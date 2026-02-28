@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>绿阳大饭店 | Green Sun Hotel</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;500&display=swap" rel="stylesheet">
+    <!-- 使用 Lucide 图标库 -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
             --primary-green: #2d4033;
             --accent-gold: #c5a059;
             --overlay: rgba(0, 0, 0, 0.2);
+            --footer-bg: #1a261e;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -72,14 +75,16 @@
             font-size: 1.2rem; letter-spacing: 8px; text-transform: uppercase;
         }
 
-        /* 饭店介绍区 */
+        /* 饭店介绍区 - 调整为单列居中布局以更显简约 */
         .info-section {
-            padding: 120px 10%;
+            padding: 120px 15%;
             background: white;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: flex-start;
+            text-align: center;
+        }
+
+        .info-text {
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .info-text h2 { 
@@ -99,12 +104,13 @@
             font-size: 1.05rem; 
             margin-bottom: 25px; 
             color: #444; 
-            text-align: justify; 
+            text-align: justify;
+            text-align-last: center; /* 让最后一行也居中 */
         }
 
-        /* 优化后的简约大气照片布局 */
+        /* 照片布局保持简约大气 */
         .info-gallery {
-            margin-top: 60px;
+            margin-top: 80px;
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -119,13 +125,12 @@
             position: relative;
             flex: 1;
         }
-        /* 第一张和第四张设为大幅图，营造错落感 */
         .gallery-item.large {
             flex: 1.5;
         }
         .gallery-item img {
             width: 100%;
-            height: 400px; /* 增加高度限制，使面积感更足 */
+            height: 500px; /* 进一步增加高度，提升冲击力 */
             object-fit: cover;
             transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
             display: block;
@@ -134,40 +139,82 @@
             transform: scale(1.05);
         }
 
-        .highlight-box {
-            background: #fdfbf7;
-            padding: 40px;
-            border-left: 4px solid var(--accent-gold);
-            margin-top: 60px;
-        }
-        .highlight-box ul {
-            list-style: none;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        .highlight-box li {
-            font-size: 1rem;
-            color: var(--primary-green);
-            display: flex;
-            align-items: center;
-        }
-        .highlight-box li:before {
-            content: "";
-            width: 6px;
-            height: 6px;
-            background: var(--accent-gold);
-            margin-right: 12px;
-            border-radius: 50%;
+        /* 底部导览样式 */
+        footer {
+            background-color: var(--footer-bg);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 80px 10% 40px;
+            font-size: 0.9rem;
         }
 
-        .info-visual {
-            position: sticky;
-            top: 150px;
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 60px;
         }
-        .info-visual img { 
-            width: 100%; 
-            box-shadow: 25px 25px 0px #f0eee8;
+
+        .footer-logo .logo-cn { color: white; margin-bottom: 10px; }
+        .footer-logo p { line-height: 1.6; margin-top: 20px; font-weight: 300; }
+
+        .footer-heading {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        .footer-heading:after {
+            content: "";
+            position: absolute;
+            left: 0; bottom: -8px;
+            width: 30px; height: 1px;
+            background: var(--accent-gold);
+        }
+
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .footer-links a:hover { color: var(--accent-gold); padding-left: 5px; }
+
+        .footer-contact li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        .footer-contact i { color: var(--accent-gold); flex-shrink: 0; }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .social-icons a {
+            width: 36px; height: 36px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+            color: white;
+            transition: 0.3s;
+        }
+        .social-icons a:hover {
+            background: var(--accent-gold);
+            border-color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
         }
 
         /* 底部浮动预订 */
@@ -182,9 +229,14 @@
         .book-now:hover { transform: scale(1.05); background: var(--accent-gold); }
 
         @media (max-width: 1024px) {
-            .info-section { grid-template-columns: 1fr; }
-            .info-visual { display: none; }
+            .info-section { padding: 80px 8%; }
             .gallery-row { flex-direction: column; }
+            .gallery-item img { height: 350px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
         }
 
     </style>
@@ -231,7 +283,7 @@
                 此外，饭店还设有日式大浴场、健身房、按摩室、理发店等娱乐设施，让客人在繁忙工作之余放松心情。多功能会议厅更可满足各式各样的商务需求。
             </p>
 
-            <!-- 优化后的简约大气相册布局 -->
+            <!-- 照片展示区域 -->
             <div class="info-gallery">
                 <div class="gallery-row">
                     <div class="gallery-item large">
@@ -250,26 +302,66 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="highlight-box">
-                <ul>
-                    <li>日式涉外酒店</li>
-                    <li>银叶级绿色饭店</li>
-                    <li>370间豪华套房</li>
-                    <li>正宗日本料理</li>
-                    <li>法式格调西餐</li>
-                    <li>多功能会议厅</li>
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-logo">
+                <div class="logo-cn">绿阳大饭店</div>
+                <div class="logo-en">GREEN SUN HOTEL</div>
+                <p>坐落于平湖经济开发区，融合日式禅意与现代奢华，为您打造城市中的静谧绿洲。无论是商务下榻还是悠闲度假，我们致力于为您提供无微不至的管家式服务。</p>
+                <div class="social-icons">
+                    <a href="#"><i data-lucide="instagram" size="18"></i></a>
+                    <a href="#"><i data-lucide="facebook" size="18"></i></a>
+                    <a href="#"><i data-lucide="twitter" size="18"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="footer-heading">关于我们</h3>
+                <ul class="footer-links">
+                    <li><a href="#">品牌故事</a></li>
+                    <li><a href="#">荣誉奖项</a></li>
+                    <li><a href="#">加入我们</a></li>
+                    <li><a href="#">最新动态</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="footer-heading">服务中心</h3>
+                <ul class="footer-links">
+                    <li><a href="#">客房预订</a></li>
+                    <li><a href="#">餐饮宴会</a></li>
+                    <li><a href="#">商务会议</a></li>
+                    <li><a href="#">日式浴场</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="footer-heading">联系我们</h3>
+                <ul class="footer-contact">
+                    <li><i data-lucide="map-pin" size="18"></i> 浙江省平湖市经济开发区永兴路</li>
+                    <li><i data-lucide="phone" size="18"></i> +86 (573) 8500 0000</li>
+                    <li><i data-lucide="mail" size="18"></i> reservation@greensunhotel.com</li>
                 </ul>
             </div>
         </div>
-        <div class="info-visual">
-            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800" alt="" style="filter: grayscale(10%);">
+
+        <div class="footer-bottom">
+            <p>© 2024 绿阳大饭店 版权所有 | 浙ICP备XXXXXXXX号</p>
+            <p>隐私政策 | 条款与条件</p>
         </div>
-    </section>
+    </footer>
 
     <div class="book-now">
         立即开启预订
     </div>
+
+    <script>
+        // 初始化 Lucide 图标
+        lucide.createIcons();
+    </script>
 
 </body>
 </html>
