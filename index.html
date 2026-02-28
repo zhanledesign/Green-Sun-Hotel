@@ -75,18 +75,7 @@
             font-size: 1.2rem; letter-spacing: 8px; text-transform: uppercase;
         }
 
-        /* 饭店介绍区 */
-        .info-section {
-            padding: 120px 15% 60px;
-            background: white;
-            text-align: center;
-        }
-
-        .info-text {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
+        /* 共通版块样式 */
         .section-title { 
             font-size: 2.2rem; 
             margin-bottom: 10px; 
@@ -100,6 +89,19 @@
             margin-bottom: 40px;
             display: block;
         }
+
+        /* 饭店介绍区 */
+        .info-section {
+            padding: 120px 15% 60px;
+            background: white;
+            text-align: center;
+        }
+
+        .info-text {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
         .info-text p { 
             font-size: 1.05rem; 
             margin-bottom: 25px; 
@@ -108,7 +110,7 @@
             text-align-last: center;
         }
 
-        /* 照片布局 */
+        /* 饭店照片布局 */
         .info-gallery {
             margin-top: 60px;
             display: flex;
@@ -219,6 +221,101 @@
             color: var(--accent-gold);
         }
 
+        /* 餐饮宴会版块 */
+        .dining-section {
+            padding: 120px 10%;
+            background: white;
+        }
+
+        .dining-main-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 80px;
+            align-items: start;
+            margin-bottom: 60px;
+        }
+
+        .dining-image-main img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            box-shadow: 30px 30px 0px #f0eee8;
+        }
+
+        .dining-content {
+            text-align: left;
+        }
+
+        .dining-content h3 {
+            font-size: 1.8rem;
+            color: var(--primary-green);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .dining-desc {
+            font-size: 1.05rem;
+            color: #444;
+            margin-bottom: 40px;
+            line-height: 2;
+        }
+
+        .capacity-box {
+            background: #fdfbf7;
+            padding: 35px;
+            border-left: 3px solid var(--accent-gold);
+        }
+
+        .capacity-title {
+            font-size: 1rem;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            display: block;
+            font-weight: 500;
+        }
+
+        .capacity-list {
+            list-style: none;
+        }
+
+        .capacity-list li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            border-bottom: 1px dashed #e0e0e0;
+            padding-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .capacity-label { color: var(--primary-green); }
+        .capacity-value { font-weight: 500; color: #1a1a1a; }
+
+        /* 日本料理照片展示 */
+        .cuisine-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .cuisine-item {
+            height: 350px;
+            overflow: hidden;
+            background: #eee;
+        }
+
+        .cuisine-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.6s;
+        }
+
+        .cuisine-item:hover img {
+            transform: scale(1.1);
+        }
+
         /* 底部导览样式 */
         footer {
             background-color: var(--footer-bg);
@@ -309,10 +406,9 @@
         .book-now:hover { transform: scale(1.05); background: var(--accent-gold); }
 
         @media (max-width: 1024px) {
-            .info-section { padding: 80px 8%; }
-            .rooms-grid { grid-template-columns: repeat(2, 1fr); }
-            .gallery-row { flex-direction: column; }
-            .gallery-item img { height: 350px; }
+            .dining-main-layout { grid-template-columns: 1fr; gap: 40px; }
+            .dining-image-main img { height: 400px; box-shadow: 15px 15px 0px #f0eee8; }
+            .cuisine-gallery { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 768px) {
@@ -335,7 +431,7 @@
         <ul class="nav-links">
             <li><a href="#about">饭店介绍</a></li>
             <li><a href="#rooms">客房预订</a></li>
-            <li><a href="#">餐饮宴会</a></li>
+            <li><a href="#dining">餐饮宴会</a></li>
             <li><a href="#">会议接待</a></li>
             <li><a href="#">饭店设施</a></li>
             <li><a href="#">交通位置</a></li>
@@ -365,7 +461,6 @@
                 日本料理是本饭店的一大特色。由日本厨师亲自掌勺制作，在平湖地区享有盛誉。格调高雅的西餐厅则在私人聚会和商务接待中，为您尽情演绎法式饮食文化的色彩。
             </p>
 
-            <!-- 照片展示区域 -->
             <div class="info-gallery">
                 <div class="gallery-row">
                     <div class="gallery-item large">
@@ -393,7 +488,6 @@
         <span class="section-subtitle">ACCOMMODATION & RESERVATION</span>
         
         <div class="rooms-grid">
-            <!-- 客房 1 -->
             <div class="room-card">
                 <img src="room1.jpg" alt="" class="room-img">
                 <div class="room-info">
@@ -406,7 +500,6 @@
                 </div>
             </div>
 
-            <!-- 客房 2 -->
             <div class="room-card">
                 <img src="room2.jpg" alt="" class="room-img">
                 <div class="room-info">
@@ -419,7 +512,6 @@
                 </div>
             </div>
 
-            <!-- 客房 3 -->
             <div class="room-card">
                 <img src="room3.jpg" alt="" class="room-img">
                 <div class="room-info">
@@ -430,6 +522,57 @@
                         <a href="#" class="btn-reserve">立即预订</a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 餐饮宴会版块 -->
+    <section class="dining-section" id="dining">
+        <div class="dining-content" style="text-align: center; margin-bottom: 60px;">
+            <h2 class="section-title">餐饮宴会</h2>
+            <span class="section-subtitle">DINING & BANQUET</span>
+        </div>
+
+        <div class="dining-main-layout">
+            <div class="dining-image-main">
+                <img src="https://images.unsplash.com/photo-1579027989536-b7b1f875659b?q=80&w=800" alt="">
+            </div>
+            <div class="dining-content">
+                <h3>日本料理　若　杉</h3>
+                <p class="dining-desc">
+                    请一定要品尝在日本人的管理和指导下，使用严选的新鲜食材的日本料理。包括每日更新套餐在内的丰富营养套餐，超过【300】种类的居酒屋菜单等着您的到来。同时还承接各种宴会及高级套餐的预定。
+                </p>
+                
+                <div class="capacity-box">
+                    <span class="capacity-title">最大容纳人数</span>
+                    <ul class="capacity-list">
+                        <li>
+                            <span class="capacity-label">宴会</span>
+                            <span class="capacity-value">32 名</span>
+                        </li>
+                        <li>
+                            <span class="capacity-label">派对预约</span>
+                            <span class="capacity-value">250 名</span>
+                        </li>
+                        <li>
+                            <span class="capacity-label">包场预约</span>
+                            <span class="capacity-value">300 名</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 新增：日本料理图片展示 -->
+        <div class="cuisine-gallery">
+            <div class="cuisine-item">
+                <img src="cuisine1.jpg" alt="">
+            </div>
+            <div class="cuisine-item">
+                <img src="cuisine2.jpg" alt="">
+            </div>
+            <div class="cuisine-item">
+                <img src="cuisine3.jpg" alt="">
             </div>
         </div>
     </section>
@@ -461,7 +604,7 @@
                 <h3 class="footer-heading">服务中心</h3>
                 <ul class="footer-links">
                     <li><a href="#rooms">客房预订</a></li>
-                    <li><a href="#">餐饮宴会</a></li>
+                    <li><a href="#dining">餐饮宴会</a></li>
                     <li><a href="#">商务会议</a></li>
                     <li><a href="#">日式浴场</a></li>
                 </ul>
