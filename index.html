@@ -75,9 +75,9 @@
             font-size: 1.2rem; letter-spacing: 8px; text-transform: uppercase;
         }
 
-        /* 饭店介绍区 - 调整为单列居中布局以更显简约 */
+        /* 饭店介绍区 */
         .info-section {
-            padding: 120px 15%;
+            padding: 120px 15% 60px;
             background: white;
             text-align: center;
         }
@@ -87,13 +87,13 @@
             margin: 0 auto;
         }
 
-        .info-text h2 { 
+        .section-title { 
             font-size: 2.2rem; 
             margin-bottom: 10px; 
             color: var(--primary-green); 
             font-weight: 500;
         }
-        .info-text .subtitle {
+        .section-subtitle {
             font-size: 0.9rem;
             color: var(--accent-gold);
             letter-spacing: 3px;
@@ -105,12 +105,12 @@
             margin-bottom: 25px; 
             color: #444; 
             text-align: justify;
-            text-align-last: center; /* 让最后一行也居中 */
+            text-align-last: center;
         }
 
-        /* 照片布局保持简约大气 */
+        /* 照片布局 */
         .info-gallery {
-            margin-top: 80px;
+            margin-top: 60px;
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -130,13 +130,93 @@
         }
         .gallery-item img {
             width: 100%;
-            height: 500px; /* 进一步增加高度，提升冲击力 */
+            height: 500px; 
             object-fit: cover;
             transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
             display: block;
         }
         .gallery-item:hover img {
             transform: scale(1.05);
+        }
+
+        /* 客房预订版块 */
+        .rooms-section {
+            padding: 100px 10%;
+            background: #f9f8f4;
+            text-align: center;
+        }
+
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .room-card {
+            background: white;
+            overflow: hidden;
+            transition: 0.4s;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+        }
+
+        .room-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .room-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .room-info {
+            padding: 30px;
+        }
+
+        .room-name {
+            font-size: 1.3rem;
+            color: var(--primary-green);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .room-desc {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .room-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .price-tag {
+            color: var(--accent-gold);
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .btn-reserve {
+            text-decoration: none;
+            color: var(--primary-green);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--accent-gold);
+            transition: 0.3s;
+        }
+
+        .btn-reserve:hover {
+            color: var(--accent-gold);
         }
 
         /* 底部导览样式 */
@@ -230,9 +310,13 @@
 
         @media (max-width: 1024px) {
             .info-section { padding: 80px 8%; }
+            .rooms-grid { grid-template-columns: repeat(2, 1fr); }
             .gallery-row { flex-direction: column; }
             .gallery-item img { height: 350px; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .rooms-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 600px) {
             .footer-grid { grid-template-columns: 1fr; }
@@ -250,7 +334,7 @@
         </div>
         <ul class="nav-links">
             <li><a href="#about">饭店介绍</a></li>
-            <li><a href="#">客房预订</a></li>
+            <li><a href="#rooms">客房预订</a></li>
             <li><a href="#">餐饮宴会</a></li>
             <li><a href="#">会议接待</a></li>
             <li><a href="#">饭店设施</a></li>
@@ -266,10 +350,11 @@
         </div>
     </section>
 
+    <!-- 饭店介绍版块 -->
     <section class="info-section" id="about">
         <div class="info-text">
-            <h2>饭店介绍</h2>
-            <span class="subtitle">ABOUT GREEN SUN HOTEL</span>
+            <h2 class="section-title">饭店介绍</h2>
+            <span class="section-subtitle">ABOUT GREEN SUN HOTEL</span>
             <p>
                 绿阳大饭店位于自上海约90公里的浙江省平湖市经济开发区。饭店占地面积2万平方米，建筑面积约2万9千平方米。是目前平湖市唯一的一家日式的国际性旅游涉外饭店，荣获国家银叶级绿色饭店称号。
             </p>
@@ -278,9 +363,6 @@
             </p>
             <p>
                 日本料理是本饭店的一大特色。由日本厨师亲自掌勺制作，在平湖地区享有盛誉。格调高雅的西餐厅则在私人聚会和商务接待中，为您尽情演绎法式饮食文化的色彩。
-            </p>
-            <p>
-                此外，饭店还设有日式大浴场、健身房、按摩室、理发店等娱乐设施，让客人在繁忙工作之余放松心情。多功能会议厅更可满足各式各样的商务需求。
             </p>
 
             <!-- 照片展示区域 -->
@@ -299,6 +381,53 @@
                     </div>
                     <div class="gallery-item large">
                         <img src="pic4.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 客房预订版块 -->
+    <section class="rooms-section" id="rooms">
+        <h2 class="section-title">客房预订</h2>
+        <span class="section-subtitle">ACCOMMODATION & RESERVATION</span>
+        
+        <div class="rooms-grid">
+            <!-- 客房 1 -->
+            <div class="room-card">
+                <img src="room1.jpg" alt="" class="room-img">
+                <div class="room-info">
+                    <h3 class="room-name">豪华大床房</h3>
+                    <p class="room-desc">宽敞明亮的居停空间，融合日式禅意设计，为您提供最舒适的睡眠体验。</p>
+                    <div class="room-price">
+                        <span class="price-tag">CNY 680 / 晚起</span>
+                        <a href="#" class="btn-reserve">立即预订</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 客房 2 -->
+            <div class="room-card">
+                <img src="room2.jpg" alt="" class="room-img">
+                <div class="room-info">
+                    <h3 class="room-name">精致双人房</h3>
+                    <p class="room-desc">配备高端床品与独立办公区，无论是商务出行还是休闲旅游皆为理想之选。</p>
+                    <div class="room-price">
+                        <span class="price-tag">CNY 720 / 晚起</span>
+                        <a href="#" class="btn-reserve">立即预订</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 客房 3 -->
+            <div class="room-card">
+                <img src="room3.jpg" alt="" class="room-img">
+                <div class="room-info">
+                    <h3 class="room-name">酒店式公寓套房</h3>
+                    <p class="room-desc">设有独立客厅与简易厨房，为您在异地营造如家般的温馨与便利。</p>
+                    <div class="room-price">
+                        <span class="price-tag">CNY 980 / 晚起</span>
+                        <a href="#" class="btn-reserve">立即预订</a>
                     </div>
                 </div>
             </div>
@@ -331,7 +460,7 @@
             <div>
                 <h3 class="footer-heading">服务中心</h3>
                 <ul class="footer-links">
-                    <li><a href="#">客房预订</a></li>
+                    <li><a href="#rooms">客房预订</a></li>
                     <li><a href="#">餐饮宴会</a></li>
                     <li><a href="#">商务会议</a></li>
                     <li><a href="#">日式浴场</a></li>
