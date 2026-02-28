@@ -13,6 +13,7 @@
             --accent-gold: #c5a059;
             --overlay: rgba(0, 0, 0, 0.2);
             --footer-bg: #1a261e;
+            --transition-curve: cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -22,6 +23,19 @@
             color: #1a1a1a;
             overflow-x: hidden;
             line-height: 1.8;
+        }
+
+        /* --- 滚动动效基础样式 --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.2s var(--transition-curve), transform 1.2s var(--transition-curve);
+            will-change: transform, opacity;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* 顶部导航 */
@@ -69,10 +83,22 @@
         .hero-content h1 {
             font-size: 4.5rem; font-weight: 300; margin-bottom: 20px;
             text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            animation: fadeInDown 1.5s var(--transition-curve);
         }
         
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .hero-content p {
             font-size: 1.2rem; letter-spacing: 8px; text-transform: uppercase;
+            animation: fadeIn 2s var(--transition-curve) 0.5s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* 共通版块样式 */
@@ -92,13 +118,13 @@
 
         /* 饭店介绍区 */
         .info-section {
-            padding: 120px 15% 60px;
+            padding: 120px 10% 60px;
             background: white;
             text-align: center;
         }
 
         .info-text {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
@@ -110,31 +136,25 @@
             text-align-last: center;
         }
 
-        /* 饭店照片布局 */
         .info-gallery {
             margin-top: 60px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
         }
-        .gallery-row {
-            display: flex;
-            gap: 20px;
-        }
+        
         .gallery-item {
             overflow: hidden;
             background: #f4f4f4;
             position: relative;
-            flex: 1;
+            aspect-ratio: 16 / 10;
         }
-        .gallery-item.large {
-            flex: 1.5;
-        }
+        
         .gallery-item img {
             width: 100%;
-            height: 500px; 
+            height: 100%; 
             object-fit: cover;
-            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: transform 0.8s var(--transition-curve);
             display: block;
         }
         .gallery-item:hover img {
@@ -150,7 +170,7 @@
 
         .rooms-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
             margin-top: 50px;
         }
@@ -291,7 +311,7 @@
         .capacity-label { color: var(--primary-green); }
         .capacity-value { font-weight: 500; color: #1a1a1a; }
 
-        /* 日本料理照片展示 */
+        /* 日本料理照片展示 (更新为 6 张网格) */
         .cuisine-gallery {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -408,11 +428,13 @@
         @media (max-width: 1024px) {
             .dining-main-layout { grid-template-columns: 1fr; gap: 40px; }
             .dining-image-main img { height: 400px; box-shadow: 15px 15px 0px #f0eee8; }
-            .cuisine-gallery { grid-template-columns: 1fr; }
+            .cuisine-gallery { grid-template-columns: repeat(2, 1fr); }
             .footer-grid { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 768px) {
             .rooms-grid { grid-template-columns: 1fr; }
+            .info-gallery { grid-template-columns: 1fr; }
+            .cuisine-gallery { grid-template-columns: 1fr; }
         }
         @media (max-width: 600px) {
             .footer-grid { grid-template-columns: 1fr; }
@@ -449,34 +471,32 @@
     <!-- 饭店介绍版块 -->
     <section class="info-section" id="about">
         <div class="info-text">
-            <h2 class="section-title">饭店介绍</h2>
-            <span class="section-subtitle">ABOUT GREEN SUN HOTEL</span>
-            <p>
-                绿阳大饭店位于自上海约90公里的浙江省平湖市经济开发区。饭店占地面积2万平方米，建筑面积约2万9千平方米。是目前平湖市唯一的一家日式的国际性旅游涉外饭店，荣获国家银叶级绿色饭店称号。
-            </p>
-            <p>
-                饭店拥有370间不同套型的各式豪华客房及公寓套房。其中本馆设有170余间精致客房，别馆提供100余间酒店式公寓套房，以及近期完工的103间全新客房与公寓套房。各房间内除了能免费上网之外，卫星电视和影视点播系统等设施也非常完备。
-            </p>
-            <p>
-                日本料理是本饭店的一大特色。由日本厨师亲自掌勺制作，在平湖地区享有盛誉。格调高雅的西餐厅则在私人聚会和商务接待中，为您尽情演绎法式饮食文化的色彩。
-            </p>
+            <h2 class="section-title reveal">饭店介绍</h2>
+            <span class="section-subtitle reveal">ABOUT GREEN SUN HOTEL</span>
+            <div class="reveal">
+                <p>
+                    绿阳大饭店位于自上海约90公里的浙江省平湖市经济开发区。饭店占地面积2万平方米，建筑面积约2万9千平方米。是目前平湖市唯一的一家日式的国际性旅游涉外饭店，荣获国家银叶级绿色饭店称号。
+                </p>
+                <p>
+                    饭店拥有370间不同套型的各式豪华客房及公寓套房。其中本馆设有170余间精致客房，别馆提供100余间酒店式公寓套房，以及近期完工的103间全新客房与公寓套房。各房间内除了能免费上网之外，卫星电视和影视点播系统等设施也非常完备。
+                </p>
+                <p>
+                    日本料理是本饭店的一大特色。由日本厨师亲自掌勺制作，在平湖地区享有盛誉。格调高雅的西餐厅则在私人聚会和商务接待中，为您尽情演绎法式饮食文化的色彩。
+                </p>
+            </div>
 
             <div class="info-gallery">
-                <div class="gallery-row">
-                    <div class="gallery-item large">
-                        <img src="pic1.jpg" alt="">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="pic2.jpg" alt="">
-                    </div>
+                <div class="gallery-item reveal">
+                    <img src="pic1.jpg" alt="">
                 </div>
-                <div class="gallery-row">
-                    <div class="gallery-item">
-                        <img src="pic3.jpg" alt="">
-                    </div>
-                    <div class="gallery-item large">
-                        <img src="pic4.jpg" alt="">
-                    </div>
+                <div class="gallery-item reveal">
+                    <img src="pic2.jpg" alt="">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="pic3.jpg" alt="">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="pic4.jpg" alt="">
                 </div>
             </div>
         </div>
@@ -484,11 +504,11 @@
 
     <!-- 客房预订版块 -->
     <section class="rooms-section" id="rooms">
-        <h2 class="section-title">客房预订</h2>
-        <span class="section-subtitle">ACCOMMODATION & RESERVATION</span>
+        <h2 class="section-title reveal">客房预订</h2>
+        <span class="section-subtitle reveal">ACCOMMODATION & RESERVATION</span>
         
         <div class="rooms-grid">
-            <div class="room-card">
+            <div class="room-card reveal">
                 <img src="room1.jpg" alt="" class="room-img">
                 <div class="room-info">
                     <h3 class="room-name">豪华大床房</h3>
@@ -500,7 +520,7 @@
                 </div>
             </div>
 
-            <div class="room-card">
+            <div class="room-card reveal">
                 <img src="room2.jpg" alt="" class="room-img">
                 <div class="room-info">
                     <h3 class="room-name">精致双人房</h3>
@@ -512,7 +532,31 @@
                 </div>
             </div>
 
-            <div class="room-card">
+            <div class="room-card reveal">
+                <img src="room4.jpg" alt="" class="room-img">
+                <div class="room-info">
+                    <h3 class="room-name">行政至尊套房</h3>
+                    <p class="room-desc">顶级配置与全景视野，专为追求卓越品质的宾客打造，尽享奢华私密时光。</p>
+                    <div class="room-price">
+                        <span class="price-tag">CNY 1,580 / 晚起</span>
+                        <a href="#" class="btn-reserve">立即预订</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="room-card reveal">
+                <img src="room5.jpg" alt="" class="room-img">
+                <div class="room-info">
+                    <h3 class="room-name">日式标准间</h3>
+                    <p class="room-desc">纯正和风装潢，营造宁静雅致的氛围，让您身处繁华亦能感受自然韵味。</p>
+                    <div class="room-price">
+                        <span class="price-tag">CNY 780 / 晚起</span>
+                        <a href="#" class="btn-reserve">立即预订</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="room-card reveal">
                 <img src="room3.jpg" alt="" class="room-img">
                 <div class="room-info">
                     <h3 class="room-name">酒店式公寓套房</h3>
@@ -529,15 +573,15 @@
     <!-- 餐饮宴会版块 -->
     <section class="dining-section" id="dining">
         <div class="dining-content" style="text-align: center; margin-bottom: 60px;">
-            <h2 class="section-title">餐饮宴会</h2>
-            <span class="section-subtitle">DINING & BANQUET</span>
+            <h2 class="section-title reveal">餐饮宴会</h2>
+            <span class="section-subtitle reveal">DINING & BANQUET</span>
         </div>
 
         <div class="dining-main-layout">
-            <div class="dining-image-main">
+            <div class="dining-image-main reveal">
                 <img src="https://images.unsplash.com/photo-1579027989536-b7b1f875659b?q=80&w=800" alt="">
             </div>
-            <div class="dining-content">
+            <div class="dining-content reveal">
                 <h3>日本料理　若　杉</h3>
                 <p class="dining-desc">
                     请一定要品尝在日本人的管理和指导下，使用严选的新鲜食材的日本料理。包括每日更新套餐在内的丰富营养套餐，超过【300】种类的居酒屋菜单等着您的到来。同时还承接各种宴会及高级套餐的预定。
@@ -563,16 +607,28 @@
             </div>
         </div>
 
-        <!-- 新增：日本料理图片展示 -->
+        <!-- 日本料理照片展示 (现包含新增的 3 张照片，共 6 张) -->
         <div class="cuisine-gallery">
-            <div class="cuisine-item">
+            <div class="cuisine-item reveal">
                 <img src="cuisine1.jpg" alt="">
             </div>
-            <div class="cuisine-item">
+            <div class="cuisine-item reveal">
                 <img src="cuisine2.jpg" alt="">
             </div>
-            <div class="cuisine-item">
+            <div class="cuisine-item reveal">
                 <img src="cuisine3.jpg" alt="">
+            </div>
+            <!-- 新增照片 1 -->
+            <div class="cuisine-item reveal">
+                <img src="cuisine4.jpg" alt="">
+            </div>
+            <!-- 新增照片 2 -->
+            <div class="cuisine-item reveal">
+                <img src="cuisine5.jpg" alt="">
+            </div>
+            <!-- 新增照片 3 -->
+            <div class="cuisine-item reveal">
+                <img src="cuisine6.jpg" alt="">
             </div>
         </div>
     </section>
@@ -633,6 +689,39 @@
     <script>
         // 初始化 Lucide 图标
         lucide.createIcons();
+
+        /**
+         * 滚动显示动效逻辑
+         */
+        const observerOptions = {
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        // 处理交错延迟 (Stagger effect)
+        const containers = ['.rooms-grid', '.info-gallery', '.cuisine-gallery'];
+        
+        containers.forEach(containerSelector => {
+            const container = document.querySelector(containerSelector);
+            if (container) {
+                const items = container.querySelectorAll('.reveal');
+                items.forEach((item, index) => {
+                    item.style.transitionDelay = `${index * 0.15}s`;
+                });
+            }
+        });
+
+        revealElements.forEach(el => observer.observe(el));
     </script>
 
 </body>
