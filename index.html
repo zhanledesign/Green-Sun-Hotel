@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>绿阳大饭店 | Green Sun Hotel - 现代高端版</title>
+    <title>绿阳大饭店 | Green Sun Hotel</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-green: #2d4033; /* 对应图中的绿色元素 */
-            --accent-gold: #c5a059;   /* 增加奢华感的金色 */
+            --primary-green: #2d4033;
+            --accent-gold: #c5a059;
             --overlay: rgba(0, 0, 0, 0.2);
         }
 
@@ -21,7 +21,7 @@
             line-height: 1.8;
         }
 
-        /* 顶部导航：透明悬浮 */
+        /* 顶部导航 */
         nav {
             position: absolute;
             top: 0; width: 100%; height: 120px;
@@ -53,12 +53,12 @@
         }
         .lang-btn:hover { background: white; color: black; }
 
-        /* 首屏 */
+        /* 首屏：更新为本地背景图路径 */
         .hero {
             position: relative;
             height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
-                        url('https://files.catbox.moe/6v0m0t.jpg') center/cover no-repeat;
+                        url('hero-bg.jpg') center/cover no-repeat;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             color: white; text-align: center;
         }
@@ -66,12 +66,10 @@
         .hero-content h1 {
             font-size: 4.5rem; font-weight: 300; margin-bottom: 20px;
             text-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            animation: fadeInDown 1.5s ease;
         }
         
         .hero-content p {
             font-size: 1.2rem; letter-spacing: 8px; text-transform: uppercase;
-            animation: fadeInUp 1.5s ease;
         }
 
         /* 饭店介绍区 */
@@ -104,7 +102,7 @@
             text-align: justify; 
         }
 
-        /* 新增：文字下方的照片网格 */
+        /* 文字下方的照片网格 */
         .info-gallery {
             margin-top: 50px;
             display: grid;
@@ -115,6 +113,7 @@
             aspect-ratio: 4 / 3;
             overflow: hidden;
             background: #eee;
+            position: relative;
         }
         .gallery-item img {
             width: 100%;
@@ -164,15 +163,6 @@
         }
         .book-now:hover { transform: scale(1.05); background: var(--accent-gold); }
 
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
     </style>
 </head>
 <body>
@@ -208,7 +198,7 @@
                 绿阳大饭店位于自上海约90公里的浙江省平湖市经济开发区。饭店占地面积2万平方米，建筑面积约2万9千平方米。是目前平湖市唯一的一家日式的国际性旅游涉外饭店，荣获国家银叶级绿色饭店称号。
             </p>
             <p>
-                饭店拥有370间不同套型的各式豪华客房及公寓套房。其中本馆设有170余间精致客房，别馆提供100余间酒店式公寓套房，以及近期完工的103间全新客房与公寓套房。客房设施完备，不仅提供免费高速上网，更配备了卫星电视及影视点播系统。
+                饭店拥有370间不同套型的各式豪华客房及公寓套房。其中本馆设有170余间精致客房，别馆提供100余间酒店式公寓套房，以及近期完工的103间全新客房与公寓套房。各房间内除了能免费上网之外，卫星电视和影视点播系统等设施也非常完备。
             </p>
             <p>
                 日本料理是本饭店的一大特色。由日本厨师亲自掌勺制作，在平湖地区享有盛誉。格调高雅的西餐厅则在私人聚会和商务接待中，为您尽情演绎法式饮食文化的色彩。
@@ -217,19 +207,18 @@
                 此外，饭店还设有日式大浴场、健身房、按摩室、理发店等娱乐设施，让客人在繁忙工作之余放松心情。多功能会议厅更可满足各式各样的商务需求。
             </p>
 
-            <!-- 新增的照片展示区域（四张照片） -->
             <div class="info-gallery">
                 <div class="gallery-item">
-                    <img src="" alt="pic1.jpg">
+                    <img src="pic1.jpg" alt="">
                 </div>
                 <div class="gallery-item">
-                    <img src="" alt="pic2.jpg">
+                    <img src="pic2.jpg" alt="">
                 </div>
                 <div class="gallery-item">
-                    <img src="" alt="pic3.jpg">
+                    <img src="pic3.jpg" alt="">
                 </div>
                 <div class="gallery-item">
-                    <img src="" alt="pic4.jpg">
+                    <img src="pic4.jpg" alt="">
                 </div>
             </div>
 
@@ -245,7 +234,7 @@
             </div>
         </div>
         <div class="info-visual">
-            <img src="https://images.unsplash.com/photo-1544124499-58912cbddaad?q=80&w=800" alt="" style="filter: grayscale(10%);">
+            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800" alt="" style="filter: grayscale(10%);">
         </div>
     </section>
 
