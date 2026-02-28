@@ -53,7 +53,7 @@
         }
         .lang-btn:hover { background: white; color: black; }
 
-        /* 首屏：更新为本地背景图路径 */
+        /* 首屏 */
         .hero {
             position: relative;
             height: 100vh;
@@ -96,51 +96,69 @@
             display: block;
         }
         .info-text p { 
-            font-size: 1rem; 
+            font-size: 1.05rem; 
             margin-bottom: 25px; 
             color: #444; 
             text-align: justify; 
         }
 
-        /* 文字下方的照片网格 */
+        /* 优化后的简约大气照片布局 */
         .info-gallery {
-            margin-top: 50px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            margin-top: 60px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .gallery-row {
+            display: flex;
+            gap: 20px;
         }
         .gallery-item {
-            aspect-ratio: 4 / 3;
             overflow: hidden;
-            background: #eee;
+            background: #f4f4f4;
             position: relative;
+            flex: 1;
+        }
+        /* 第一张和第四张设为大幅图，营造错落感 */
+        .gallery-item.large {
+            flex: 1.5;
         }
         .gallery-item img {
             width: 100%;
-            height: 100%;
+            height: 400px; /* 增加高度限制，使面积感更足 */
             object-fit: cover;
-            transition: transform 0.6s ease;
+            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
             display: block;
         }
         .gallery-item:hover img {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .highlight-box {
             background: #fdfbf7;
-            padding: 30px;
-            border-left: 3px solid var(--accent-gold);
-            margin-top: 40px;
+            padding: 40px;
+            border-left: 4px solid var(--accent-gold);
+            margin-top: 60px;
         }
         .highlight-box ul {
             list-style: none;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 20px;
         }
         .highlight-box li {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: var(--primary-green);
+            display: flex;
+            align-items: center;
+        }
+        .highlight-box li:before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            background: var(--accent-gold);
+            margin-right: 12px;
+            border-radius: 50%;
         }
 
         .info-visual {
@@ -149,7 +167,7 @@
         }
         .info-visual img { 
             width: 100%; 
-            box-shadow: 20px 20px 0px #f0eee8;
+            box-shadow: 25px 25px 0px #f0eee8;
         }
 
         /* 底部浮动预订 */
@@ -162,6 +180,12 @@
             letter-spacing: 2px; font-weight: 500;
         }
         .book-now:hover { transform: scale(1.05); background: var(--accent-gold); }
+
+        @media (max-width: 1024px) {
+            .info-section { grid-template-columns: 1fr; }
+            .info-visual { display: none; }
+            .gallery-row { flex-direction: column; }
+        }
 
     </style>
 </head>
@@ -207,29 +231,34 @@
                 此外，饭店还设有日式大浴场、健身房、按摩室、理发店等娱乐设施，让客人在繁忙工作之余放松心情。多功能会议厅更可满足各式各样的商务需求。
             </p>
 
+            <!-- 优化后的简约大气相册布局 -->
             <div class="info-gallery">
-                <div class="gallery-item">
-                    <img src="pic1.jpg" alt="">
+                <div class="gallery-row">
+                    <div class="gallery-item large">
+                        <img src="pic1.jpg" alt="">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="pic2.jpg" alt="">
+                    </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="pic2.jpg" alt="">
-                </div>
-                <div class="gallery-item">
-                    <img src="pic3.jpg" alt="">
-                </div>
-                <div class="gallery-item">
-                    <img src="pic4.jpg" alt="">
+                <div class="gallery-row">
+                    <div class="gallery-item">
+                        <img src="pic3.jpg" alt="">
+                    </div>
+                    <div class="gallery-item large">
+                        <img src="pic4.jpg" alt="">
+                    </div>
                 </div>
             </div>
 
             <div class="highlight-box">
                 <ul>
-                    <li>• 日式涉外酒店</li>
-                    <li>• 银叶级绿色饭店</li>
-                    <li>• 370间豪华套房</li>
-                    <li>• 正宗日本料理</li>
-                    <li>• 法式格调西餐</li>
-                    <li>• 多功能会议厅</li>
+                    <li>日式涉外酒店</li>
+                    <li>银叶级绿色饭店</li>
+                    <li>370间豪华套房</li>
+                    <li>正宗日本料理</li>
+                    <li>法式格调西餐</li>
+                    <li>多功能会议厅</li>
                 </ul>
             </div>
         </div>
