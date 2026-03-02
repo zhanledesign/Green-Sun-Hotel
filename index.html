@@ -264,13 +264,14 @@
         .extra-desc { font-size: 0.9rem; color: #666; line-height: 1.7; }
 
         /* 会议接待板块 */
-        .meeting-section { padding: 120px 0 0; background: #fdfbf7; text-align: center; }
+        .meeting-section { padding: 120px 0 60px; background: #fdfbf7; text-align: center; }
         .meeting-full-grid { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
             width: 100%; 
             margin-top: 60px;
             gap: 0;
+            background: #fff;
         }
         .meeting-item { 
             position: relative; 
@@ -287,6 +288,24 @@
             display: block;
         }
         .meeting-item:hover img { transform: scale(1.05); opacity: 1; }
+        
+        .meeting-text-container {
+            padding: 60px 10%;
+            background: white;
+            text-align: center;
+        }
+        .meeting-room-title {
+            font-size: 1.6rem;
+            color: var(--primary-green);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        .meeting-room-desc {
+            font-size: 1rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
         /* 饭店设施板块 */
         .facility-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 50px; padding: 0 10%; }
@@ -492,13 +511,18 @@
         <h2 class="section-title reveal" data-i18n="nav-meeting">会议接待</h2>
         <span class="section-subtitle reveal">MEETINGS & EVENTS</span>
         
-        <div class="meeting-full-grid">
-            <div class="meeting-item reveal">
+        <div class="meeting-full-grid reveal">
+            <div class="meeting-item">
                 <img src="https://i.postimg.cc/kXN6nqHz/hui-yi-jie-dai1.jpg" alt="">
             </div>
-            <div class="meeting-item reveal">
+            <div class="meeting-item">
                 <img src="https://i.postimg.cc/25yVFv5z/hui-yi-jie-dai2.jpg" alt="">
             </div>
+        </div>
+        
+        <div class="meeting-text-container reveal">
+            <h3 class="meeting-room-title" data-i18n="meeting-room-title">会议室</h3>
+            <p class="meeting-room-desc" data-i18n="meeting-room-desc">承接小型商务聚会及各种会议等。(最大可容50人)</p>
         </div>
     </section>
 
@@ -561,7 +585,9 @@
                 <span class="footer-title" data-i18n="footer-contact-us">联系我们</span>
                 <div class="footer-contact">
                     <div class="contact-item"><i data-lucide="map-pin" size="18"></i><span data-i18n="footer-addr">浙江省平湖市经济开发区永兴路1388号</span></div>
-                    <div class="contact-item"><i data-lucide="phone" size="18"></i><span>+86 0573-8511-1888</span></div>
+                    <div class="contact-item"><i data-lucide="phone" size="18"></i><span>0573-8507-1808</span></div>
+                    <div class="contact-item"><i data-lucide="printer" size="18"></i><span><span data-i18n="contact-fax">传真</span>: 0573-8507-1803</span></div>
+                    <div class="contact-item"><i data-lucide="mail" size="18"></i><span>info@nidec-ntfczj.com</span></div>
                 </div>
             </div>
         </div>
@@ -595,12 +621,14 @@
                 "extra-bbq": "食特美烤肉店", "extra-bbq-desc": "在平湖也可以尝到上海有人气的烤肉店的味道。",
                 "extra-cafe": "咖世加咖啡店", "extra-cafe-desc": "提供各种类的咖啡，果茶，甜品，三明治等产品，满足客户的不同需要。",
                 "extra-vip": "VIP ROOM", "extra-vip-desc": "精心准备了豪华包厢和特色料理作为组合套餐。一次仅限于一个团队贵宾。亲朋好友聚餐，招待重要贵宾等场合首选。(最多容纳20名，请提前联系)",
+                "meeting-room-title": "会议室", "meeting-room-desc": "承接小型商务聚会及各种会议等。(最大可容50人)",
                 "fac-gym": "饭店健身房", "fac-gym-desc": "设有跑步机，健身车，组合健身器等器械，助您在旅途中保持活力。",
                 "fac-bath": "日式大浴场", "fac-bath-desc": "配有桑拿，可以体验日式温泉气氛。(住宿客人免费)。",
                 "fac-shop": "饭店便利店", "fac-shop-desc": "饮料，休闲食品，日本进口食品，中国的土特产，日用品等种类繁多。",
                 "fac-massage": "专业按摩室 · 良子", "fac-massage-desc": "上海名店「良子」进驻。提供足底按摩、全身按摩、精油开背等中国传统技法。1小时70元起。此外还设有绿阳理发店。",
                 "btn-book-now": "立即开启预订", "footer-slogan": "致力于为您提供地道的日式服务与高品质的居停体验。",
-                "footer-quick-nav": "快速导航", "footer-contact-us": "联系我们", "footer-addr": "浙江省平湖市经济开发区永兴路1388号"
+                "footer-quick-nav": "快速导航", "footer-contact-us": "联系我们", "footer-addr": "浙江省平湖市经济开发区永兴路1388号",
+                "contact-fax": "传真"
             },
             en: {
                 "nav-about": "Introduction", "nav-rooms": "Rooms", "nav-dining": "Dining",
@@ -621,12 +649,14 @@
                 "extra-bbq": "BBQ Restaurant", "extra-bbq-desc": "Taste the famous Shanghai-style BBQ here in Pinghu.",
                 "extra-cafe": "CASIJA Cafe", "extra-cafe-desc": "Serving coffee, fruit tea, and desserts.",
                 "extra-vip": "VIP ROOM", "extra-vip-desc": "Luxury private rooms with set menus for VIP guests (Up to 20 pax).",
+                "meeting-room-title": "Meeting Room", "meeting-room-desc": "Available for small business gatherings and various meetings. (Max capacity: 50 persons)",
                 "fac-gym": "Fitness Center", "fac-gym-desc": "Equipped with treadmills, exercise bikes, and multi-gym equipment.",
                 "fac-bath": "Japanese Bath", "fac-bath-desc": "Equipped with sauna, offering a Japanese hot spring atmosphere (Free for staying guests).",
                 "fac-shop": "Convenience Store", "fac-shop-desc": "A wide variety of beverages, snacks, Japanese imports, local specialties, and daily necessities.",
                 "fac-massage": "Massage Room · Liangzi", "fac-massage-desc": "Famous Shanghai chain 'Liangzi'. Offers foot/body massage and oil treatment. From 70 RMB/hour. Hair salon also available.",
                 "btn-book-now": "Book Now", "footer-slogan": "Providing authentic Japanese hospitality.",
-                "footer-quick-nav": "Navigation", "footer-contact-us": "Contact", "footer-addr": "1388 Yongxing Rd, Pinghu"
+                "footer-quick-nav": "Navigation", "footer-contact-us": "Contact", "footer-addr": "1388 Yongxing Rd, Pinghu",
+                "contact-fax": "Fax"
             },
             jp: {
                 "nav-about": "ホテル紹介", "nav-rooms": "客室予約", "nav-dining": "お食事",
@@ -647,12 +677,14 @@
                 "extra-bbq": "焼肉店", "extra-bbq-desc": "上海で人気の焼肉の味を平湖でもお楽しみいただけます。",
                 "extra-cafe": "カフェ", "extra-cafe-desc": "コーヒー、フルーツティー、デザートをご提供。",
                 "extra-vip": "VIP ROOM", "extra-vip-desc": "豪華個室と特選料理のセット。大切なゲストの接待に(最大20名)。",
+                "meeting-room-title": "会議室", "meeting-room-desc": "小規模なビジネス集会や各種会議にご利用いただけます。（最大収容人数：50名）",
                 "fac-gym": "フィットネス", "fac-gym-desc": "ランニングマシン、フィットネスバイク、マルチジムなどを完備。",
                 "fac-bath": "大浴場", "fac-bath-desc": "サウナ完備、日本式温泉の雰囲気を楽しめます（宿泊客無料）。",
                 "fac-shop": "コンビニ", "fac-shop-desc": "飲料、スナック、日本輸入品、中国特産品、日用品など豊富に揃っております。",
                 "fac-massage": "マッサージ室 · 良子", "fac-massage-desc": "上海の名店「良子」提携。足裏、全身マッサージ等。1時間70元より。理容室も併設。",
                 "btn-book-now": "今すぐ予約", "footer-slogan": "本格的な和のおもてなしを提供します。",
-                "footer-quick-nav": "ナビ", "footer-contact-us": "お問い合わせ", "footer-addr": "平湖市経済开发区永兴路1388号"
+                "footer-quick-nav": "ナビ", "footer-contact-us": "お問い合わせ", "footer-addr": "平湖市経済开发区永兴路1388号",
+                "contact-fax": "ファックス"
             }
         };
 
