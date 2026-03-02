@@ -45,7 +45,6 @@
             top: 0; width: 100%; height: 90px;
             display: flex; justify-content: space-between; align-items: center;
             padding: 0 4%; z-index: 1000;
-            /* 导航栏背景色改为深绿色透明 */
             background: rgba(0, 85, 46, 0.85);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
@@ -90,9 +89,38 @@
 
         .section-title { font-size: 2.2rem; margin-bottom: 10px; color: var(--primary-green); font-weight: 500; }
         .section-subtitle { font-size: 0.9rem; color: var(--primary-green); opacity: 0.8; letter-spacing: 3px; margin-bottom: 40px; display: block; }
-        /* 使用淡金色作为副标题强调色 */
         .section-subtitle::after {
             content: ''; display: block; width: 40px; height: 2px; background: var(--accent-gold); margin: 10px auto;
+        }
+
+        /* 胶囊标签样式 */
+        .capsule-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--primary-green);
+            color: var(--accent-gold);
+            padding: 8px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border: 1px solid var(--accent-gold);
+            margin-bottom: 30px;
+            transition: 0.3s var(--transition-curve);
+            box-shadow: 0 4px 15px rgba(0, 85, 46, 0.2);
+            animation: pulse-border 3s infinite;
+        }
+        .capsule-tag:hover {
+            transform: scale(1.05);
+            background: #004424;
+            box-shadow: 0 6px 20px rgba(0, 85, 46, 0.4);
+        }
+        .capsule-tag i { color: #2577e3; background: white; border-radius: 50%; padding: 2px; } /* 携程色微型点缀 */
+
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(253, 222, 165, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(253, 222, 165, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(253, 222, 165, 0); }
         }
 
         .info-section { padding: 120px 0 60px; background: white; text-align: center; }
@@ -190,7 +218,6 @@
             box-shadow: 0 5px 20px rgba(0, 85, 46, 0.3);
         }
 
-        /* 价格表弹窗 */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -254,7 +281,6 @@
         .extra-title { font-size: 1.2rem; color: var(--primary-green); margin-bottom: 15px; font-weight: 500; border-bottom: 2px solid var(--accent-gold); padding-bottom: 10px; display: inline-block; }
         .extra-desc { font-size: 0.9rem; color: #666; line-height: 1.7; }
 
-        /* 会议接待板块 */
         .meeting-section { padding: 120px 0 60px; background: #fdfbf7; text-align: center; }
         .meeting-full-grid { 
             display: grid; 
@@ -298,7 +324,6 @@
             margin: 0 auto;
         }
 
-        /* 饭店设施板块 */
         .facility-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 50px; padding: 0 10%; }
         .facility-item { display: flex; flex-direction: column; text-align: left; }
         .facility-img-box { height: 350px; overflow: hidden; position: relative; background: #eee; box-shadow: 0 10px 20px rgba(0,0,0,0.04); margin-bottom: 20px; border-bottom: 4px solid var(--accent-gold); }
@@ -366,9 +391,7 @@
         </div>
     </nav>
 
-    <section class="hero">
-        <!-- 背景图已按要求替换，文案已删除 -->
-    </section>
+    <section class="hero"></section>
 
     <!-- 饭店介绍版块 -->
     <section class="info-section" id="about">
@@ -397,6 +420,17 @@
     <section class="rooms-section" id="rooms">
         <h2 class="section-title reveal" data-i18n="rooms-title">客房预订</h2>
         <span class="section-subtitle reveal" data-i18n="rooms-subtitle">ACCOMMODATION & RESERVATION</span>
+        
+        <!-- 新增携程预订胶囊标签 -->
+        <div class="reveal">
+            <a href="https://hotels.ctrip.com/hotels/1700272.html?cityid=1206&checkIn=2026-03-04&checkOut=2026-03-12&crn=1&adult=2&children=0" 
+               target="_blank" 
+               class="capsule-tag" 
+               data-i18n-href="ctrip-link">
+                <i data-lucide="external-link" size="16"></i>
+                <span data-i18n="ctrip-tag-text">点击跳转至携程预订客房</span>
+            </a>
+        </div>
         
         <div class="rooms-full-grid">
             <div class="room-card-full reveal">
@@ -599,6 +633,7 @@
                 "about-p1": "绿阳大饭店位于自上海约90公里的浙江省平湖市经济开发区，饭店占地面积2万平方米，建筑面积约2万9千平方米。是目前平湖市唯一的一家日式的国际性旅游涉外饭店，国家银叶级绿色饭店。",
                 "about-p2": "饭店拥有370间不同套型的各式豪华客房及公寓套房。其中本馆170余间的客房，别管100余间的酒店式公寓套房，以及刚建造完工的103间的新客房加酒店式公寓套房。各房间内除了能免费上网之外，卫星电视和影视点播系统等设施也非常完备。日本料理是本饭店的一大特设。由日本人厨师亲自制作，在平湖有着最高的评价。格调高雅的西餐厅，在私人聚会和商务接待中尽情地演绎着法国式食文化的色彩。还有日本式的大浴场，健身房，按摩室，理发店等娱乐设施可让客人在繁忙的工作之余放松心情。多功能会议厅可满足客人各式各样的商务需求。",
                 "rooms-title": "客房预订", "rooms-subtitle": "ACCOMMODATION & RESERVATION",
+                "ctrip-tag-text": "点击跳转至携程预订客房",
                 "room1-name": "豪华大床房", "room1-desc": "宽敞明亮的居停空间，融合日式禅意设计，为您提供私密且舒适的休息环境。",
                 "room1-price": "CNY 680 / 晚起", "room2-name": "酒店式公寓", "room2-desc": "专为长住宾客设计的温馨空间，配备齐全的家居设施，让您在外也能感受家的温度。",
                 "room2-price": "CNY 850 / 晚起", "btn-reserve": "立即预订",
@@ -624,25 +659,26 @@
                 "nav-meeting": "Meetings", "nav-facility": "Facilities", "nav-location": "Location",
                 "about-title": "Introduction", "about-subtitle": "ABOUT GREEN SUN HOTEL",
                 "about-p1": "Located in Pinghu EDZ, 90km from Shanghai. The unique Japanese-style international hotel in Pinghu.",
-                "about-p2": "Features 370 rooms including apartments. Japanese cuisine is our specialty, featuring authentic menus prepared by Japanese chefs.",
+                "about-p2": "Features 370 rooms including apartments. Japanese cuisine is our specialty.",
                 "rooms-title": "Rooms", "rooms-subtitle": "ACCOMMODATION",
-                "room1-name": "Deluxe King Room", "room1-desc": "Spacious and bright living space, blending Japanese Zen design.",
-                "room1-price": "From CNY 680", "room2-name": "Apartment Suite", "room2-desc": "Warm space designed for long-stay guests, equipped with complete home facilities.",
+                "ctrip-tag-text": "Book rooms on Ctrip.com",
+                "room1-name": "Deluxe King Room", "room1-desc": "Spacious living space with Japanese Zen design.",
+                "room1-price": "From CNY 680", "room2-name": "Apartment Suite", "room2-desc": "Equipped with complete home facilities.",
                 "room2-price": "From CNY 850", "btn-reserve": "Book Now",
                 "price-table-label": "Detailed Price List",
                 "dining-title": "Dining", "dining-subtitle": "DINING & BANQUET",
                 "dining-name": "Japanese WAKASUGI", 
-                "dining-desc": "Authentic Japanese cuisine under expert Japanese management. Over 300 Izakaya menu items available.",
+                "dining-desc": "Authentic Japanese cuisine under expert Japanese management.",
                 "cap-title": "Max Capacity", "cap-banquet": "Banquet", "cap-party": "Party", "cap-whole": "Private",
-                "extra-bbq": "BBQ Restaurant", "extra-bbq-desc": "Taste the famous Shanghai-style BBQ here in Pinghu.",
+                "extra-bbq": "BBQ Restaurant", "extra-bbq-desc": "Shanghai-style BBQ here in Pinghu.",
                 "extra-cafe": "CASIJA Cafe", "extra-cafe-desc": "Serving coffee, fruit tea, and desserts.",
-                "extra-vip": "VIP ROOM", "extra-vip-desc": "Luxury private rooms with set menus for VIP guests (Up to 20 pax).",
-                "meeting-room-title": "Meeting Room", "meeting-room-desc": "Available for small business gatherings and various meetings. (Max capacity: 50 persons)",
-                "fac-gym": "Fitness Center", "fac-gym-desc": "Equipped with treadmills, exercise bikes, and multi-gym equipment.",
-                "fac-bath": "Japanese Bath", "fac-bath-desc": "Equipped with sauna, offering a Japanese hot spring atmosphere (Free for staying guests).",
-                "fac-shop": "Convenience Store", "fac-shop-desc": "A wide variety of beverages, snacks, Japanese imports, local specialties, and daily necessities.",
-                "fac-massage": "Massage Room · Liangzi", "fac-massage-desc": "Famous Shanghai chain 'Liangzi'. Offers foot/body massage and oil treatment. From 70 RMB/hour. Hair salon also available.",
-                "btn-book-now": "Book Now", "footer-slogan": "Providing authentic Japanese hospitality.",
+                "extra-vip": "VIP ROOM", "extra-vip-desc": "Private rooms for VIP guests (Up to 20 pax).",
+                "meeting-room-title": "Meeting Room", "meeting-room-desc": "Max capacity: 50 persons.",
+                "fac-gym": "Fitness Center", "fac-gym-desc": "Equipped with treadmills and exercise bikes.",
+                "fac-bath": "Japanese Bath", "fac-bath-desc": "Equipped with sauna (Free for guests).",
+                "fac-shop": "Convenience Store", "fac-shop-desc": "Beverages, snacks, and daily necessities.",
+                "fac-massage": "Massage Room · Liangzi", "fac-massage-desc": "Famous chain 'Liangzi'. From 70 RMB/hour.",
+                "btn-book-now": "Book Now", "footer-slogan": "Authentic Japanese hospitality.",
                 "footer-quick-nav": "Navigation", "footer-contact-us": "Contact", "footer-addr": "1388 Yongxing Rd, Pinghu",
                 "contact-fax": "Fax"
             },
@@ -651,25 +687,26 @@
                 "nav-meeting": "会議・宴会", "nav-facility": "施設案内", "nav-location": "アクセス",
                 "about-title": "ホテル紹介", "about-subtitle": "ABOUT GREEN SUN HOTEL",
                 "about-p1": "上海から90kmの平湖市に位置。平湖市唯一の和風ホテル。",
-                "about-p2": "370室の客室和アパートメントを完備。日本人シェフによる本格的な日本料理が自慢です。",
+                "about-p2": "370室の客室和アパートメントを完備。日本人シェフによる本格料理。",
                 "rooms-title": "客室予約", "rooms-subtitle": "ACCOMMODATION",
-                "room1-name": "デラックスキング", "room1-desc": "広々と明るい居心地の良い空間に、和の禅の心を取り入れました。",
-                "room1-price": "CNY 680〜", "room2-name": "アパートメント", "room2-desc": "長期滞在のために設計された温かみのある空間で、充実した設備が揃っています。",
+                "ctrip-tag-text": "Ctripで予約する",
+                "room1-name": "デラックスキング", "room1-desc": "広々と明るい居心地の良い空間に、和の禅の心。",
+                "room1-price": "CNY 680〜", "room2-name": "アパートメント", "room2-desc": "長期滞在のために設計された充実した設備。",
                 "room2-price": "CNY 850〜", "btn-reserve": "予約する",
                 "price-table-label": "料金表の詳細",
                 "dining-title": "お食事", "dining-subtitle": "DINING & BANQUET",
                 "dining-name": "日本料理　若杉", 
-                "dining-desc": "日本人による管理・指導の下、厳选食材を使用した日本料理。300種類以上の居酒屋メニュー。",
+                "dining-desc": "日本人による管理・指導の下、厳选食材を使用した日本料理。",
                 "cap-title": "最大収容人数", "cap-banquet": "宴会", "cap-party": "パーティ", "cap-whole": "貸切",
-                "extra-bbq": "焼肉店", "extra-bbq-desc": "上海で人気の焼肉の味を平湖でもお楽しみいただけます。",
-                "extra-cafe": "カフェ", "extra-cafe-desc": "コーヒー、フルーツティー、デザートをご提供。",
-                "extra-vip": "VIP ROOM", "extra-vip-desc": "豪華個室と特選料理のセット。大切なゲストの接待に(最大20名)。",
-                "meeting-room-title": "会議室", "meeting-room-desc": "小規模なビジネス集会や各種会議にご利用いただけます。（最大収容人数：50名）",
-                "fac-gym": "フィットネス", "fac-gym-desc": "ランニングマシン、フィットネスバイク、マルチジムなどを完備。",
-                "fac-bath": "大浴場", "fac-bath-desc": "サウナ完備、日本式温泉の雰囲気を楽しめます（宿泊客無料）。",
-                "fac-shop": "コンビニ", "fac-shop-desc": "飲料、スナック、日本輸入品、中国特産品、日用品など豊富に揃っております。",
-                "fac-massage": "マッサージ室 · 良子", "fac-massage-desc": "上海の名店「良子」提携。足裏、全身マッサージ等。1時間70元より。理容室も併设。",
-                "btn-book-now": "今すぐ予約", "footer-slogan": "本格的な和のおもてなしを提供します。",
+                "extra-bbq": "焼肉店", "extra-bbq-desc": "上海で人気の焼肉の味を平湖でも。",
+                "extra-cafe": "カフェ", "extra-cafe-desc": "コーヒー、フルーツティー、デザート。",
+                "extra-vip": "VIP ROOM", "extra-vip-desc": "接待に最適な個室(最大20名)。",
+                "meeting-room-title": "会議室", "meeting-room-desc": "最大収容人数：50名。",
+                "fac-gym": "フィットネス", "fac-gym-desc": "ランニングマシン、バイク完備。",
+                "fac-bath": "大浴場", "fac-bath-desc": "サウナ完備、日本式温泉（宿泊客無料）。",
+                "fac-shop": "コンビニ", "fac-shop-desc": "飲料、スナック、日本輸入品など。",
+                "fac-massage": "マッサージ室 · 良子", "fac-massage-desc": "上海の名店「良子」提携。1時間70元より。",
+                "btn-book-now": "今すぐ予約", "footer-slogan": "本格的な和のおもてなし。",
                 "footer-quick-nav": "ナビ", "footer-contact-us": "お問い合わせ", "footer-addr": "平湖市経済開発区永興路1388号",
                 "contact-fax": "ファックス"
             }
@@ -677,7 +714,6 @@
 
         function setLang(lang) {
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            // 匹配按钮逻辑
             const langBtns = document.querySelectorAll('.lang-btn');
             langBtns.forEach(btn => {
                 const btnText = btn.innerText.toLowerCase();
@@ -708,7 +744,6 @@
             }
         }
 
-        // 渐显动画触发逻辑
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -719,7 +754,6 @@
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         
-        // 滚动时改变导航栏背景深浅
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('mainNav');
             if (window.scrollY > 100) {
