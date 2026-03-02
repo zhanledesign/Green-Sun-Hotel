@@ -263,7 +263,7 @@
         .extra-title { font-size: 1.2rem; color: var(--primary-green); margin-bottom: 15px; font-weight: 500; border-bottom: 1px solid #c5a059; padding-bottom: 10px; display: inline-block; }
         .extra-desc { font-size: 0.9rem; color: #666; line-height: 1.7; }
 
-        /* 会议接待板块 - 修改为全屏网格 */
+        /* 会议接待板块 */
         .meeting-section { padding: 120px 0 0; background: #fdfbf7; text-align: center; }
         .meeting-full-grid { 
             display: grid; 
@@ -289,10 +289,13 @@
         .meeting-item:hover img { transform: scale(1.05); opacity: 1; }
 
         /* 饭店设施板块 */
-        .facility-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 50px; padding: 0 10%; }
-        .facility-item { height: 350px; overflow: hidden; position: relative; background: #eee; box-shadow: 0 10px 20px rgba(0,0,0,0.04); }
-        .facility-item img { width: 100%; height: 100%; object-fit: cover; transition: 1s var(--transition-curve); }
+        .facility-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 50px; padding: 0 10%; }
+        .facility-item { display: flex; flex-direction: column; text-align: left; }
+        .facility-img-box { height: 350px; overflow: hidden; position: relative; background: #eee; box-shadow: 0 10px 20px rgba(0,0,0,0.04); margin-bottom: 20px; }
+        .facility-img-box img { width: 100%; height: 100%; object-fit: cover; transition: 1s var(--transition-curve); }
         .facility-item:hover img { transform: scale(1.08); }
+        .facility-item h4 { font-size: 1.2rem; color: var(--primary-green); margin-bottom: 10px; font-weight: 500; }
+        .facility-item p { font-size: 0.9rem; color: #666; line-height: 1.6; }
 
         .map-container { width: 100%; margin-top: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); background: #fff; padding: 10px; border: 1px solid #eee; }
         .map-container img { width: 100%; height: auto; display: block; }
@@ -324,9 +327,6 @@
             .room-card-full, .meeting-item { height: 60vh; }
             .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
             .contact-item { justify-content: center; }
-            .facility-gallery { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 640px) {
             .facility-gallery { grid-template-columns: 1fr; }
         }
     </style>
@@ -487,7 +487,7 @@
         </div>
     </section>
 
-    <!-- 会议接待版块 - 修改为全屏图片展示 -->
+    <!-- 会议接待版块 -->
     <section class="meeting-section" id="meeting">
         <h2 class="section-title reveal" data-i18n="nav-meeting">会议接待</h2>
         <span class="section-subtitle reveal">MEETINGS & EVENTS</span>
@@ -502,14 +502,31 @@
         </div>
     </section>
 
-    <!-- 饭店设施版块 -->
+    <!-- 饭店设施板块 -->
     <section class="info-section" id="facility">
         <h2 class="section-title reveal" data-i18n="nav-facility">饭店设施</h2>
         <span class="section-subtitle reveal">HOTEL FACILITIES</span>
         <div class="facility-gallery">
-            <div class="facility-item reveal"><img src="https://i.postimg.cc/xCb8B2H7/fan-dian-she-shi1.jpg" alt=""></div>
-            <div class="facility-item reveal"><img src="https://i.postimg.cc/NF6MfkdK/fan-dian-she-shi2.jpg" alt=""></div>
-            <div class="facility-item reveal"><img src="https://i.postimg.cc/ZYp0cJ4g/fan-dian-she-shi3.jpg" alt=""></div>
+            <div class="facility-item reveal">
+                <div class="facility-img-box"><img src="https://i.postimg.cc/xCb8B2H7/fan-dian-she-shi1.jpg" alt=""></div>
+                <h4 data-i18n="fac-gym">饭店健身房</h4>
+                <p data-i18n="fac-gym-desc">设有跑步机，健身车，组合健身器等器械，助您在旅途中保持活力。</p>
+            </div>
+            <div class="facility-item reveal">
+                <div class="facility-img-box"><img src="https://i.postimg.cc/NF6MfkdK/fan-dian-she-shi2.jpg" alt=""></div>
+                <h4 data-i18n="fac-massage">专业按摩室 · 良子</h4>
+                <p data-i18n="fac-massage-desc">上海名店「良子」进驻。提供足底按摩、全身按摩、精油开背等中国传统技法。1小时70元起。此外还设有绿阳理发店。</p>
+            </div>
+            <div class="facility-item reveal">
+                <div class="facility-img-box"><img src="https://i.postimg.cc/MGgK7F4R/fan-dian-she-shi4.jpg" alt=""></div>
+                <h4 data-i18n="fac-bath">日式大浴场</h4>
+                <p data-i18n="fac-bath-desc">配有桑拿，可以体验日式温泉气氛。(住宿客人免费)。</p>
+            </div>
+            <div class="facility-item reveal">
+                <div class="facility-img-box"><img src="https://i.postimg.cc/Hx5WBtDX/fan-dian-she-shi5.jpg" alt=""></div>
+                <h4 data-i18n="fac-shop">饭店便利店</h4>
+                <p data-i18n="fac-shop-desc">饮料，休闲食品，日本进口食品，中国的土特产，日用品等种类繁多。</p>
+            </div>
         </div>
     </section>
 
@@ -578,6 +595,10 @@
                 "extra-bbq": "食特美烤肉店", "extra-bbq-desc": "在平湖也可以尝到上海有人气的烤肉店的味道。",
                 "extra-cafe": "咖世加咖啡店", "extra-cafe-desc": "提供各种类的咖啡，果茶，甜品，三明治等产品，满足客户的不同需要。",
                 "extra-vip": "VIP ROOM", "extra-vip-desc": "精心准备了豪华包厢和特色料理作为组合套餐。一次仅限于一个团队贵宾。亲朋好友聚餐，招待重要贵宾等场合首选。(最多容纳20名，请提前联系)",
+                "fac-gym": "饭店健身房", "fac-gym-desc": "设有跑步机，健身车，组合健身器等器械，助您在旅途中保持活力。",
+                "fac-bath": "日式大浴场", "fac-bath-desc": "配有桑拿，可以体验日式温泉气氛。(住宿客人免费)。",
+                "fac-shop": "饭店便利店", "fac-shop-desc": "饮料，休闲食品，日本进口食品，中国的土特产，日用品等种类繁多。",
+                "fac-massage": "专业按摩室 · 良子", "fac-massage-desc": "上海名店「良子」进驻。提供足底按摩、全身按摩、精油开背等中国传统技法。1小时70元起。此外还设有绿阳理发店。",
                 "btn-book-now": "立即开启预订", "footer-slogan": "致力于为您提供地道的日式服务与高品质的居停体验。",
                 "footer-quick-nav": "快速导航", "footer-contact-us": "联系我们", "footer-addr": "浙江省平湖市经济开发区永兴路1388号"
             },
@@ -589,17 +610,21 @@
                 "about-p1": "Located in Pinghu EDZ, 90km from Shanghai. The unique Japanese-style international hotel in Pinghu.",
                 "about-p2": "Features 370 rooms including apartments. Japanese cuisine is our specialty, featuring authentic menus prepared by Japanese chefs.",
                 "rooms-title": "Rooms", "rooms-subtitle": "ACCOMMODATION",
-                "room1-name": "Deluxe King Room", "room1-desc": "Spacious and bright living space, blending Japanese Zen design, providing a private and comfortable environment.",
+                "room1-name": "Deluxe King Room", "room1-desc": "Spacious and bright living space, blending Japanese Zen design.",
                 "room1-price": "From CNY 680", "room2-name": "Apartment Suite", "room2-desc": "Warm space designed for long-stay guests, equipped with complete home facilities.",
                 "room2-price": "From CNY 850", "btn-reserve": "Book Now",
                 "price-table-label": "Detailed Price List",
                 "dining-title": "Dining", "dining-subtitle": "DINING & BANQUET",
                 "dining-name": "Japanese WAKASUGI", 
-                "dining-desc": "Authentic Japanese cuisine under expert Japanese management. Over 300 Izakaya menu items and daily sets available.",
+                "dining-desc": "Authentic Japanese cuisine under expert Japanese management. Over 300 Izakaya menu items available.",
                 "cap-title": "Max Capacity", "cap-banquet": "Banquet", "cap-party": "Party", "cap-whole": "Private",
                 "extra-bbq": "BBQ Restaurant", "extra-bbq-desc": "Taste the famous Shanghai-style BBQ here in Pinghu.",
-                "extra-cafe": "CASIJA Cafe", "extra-cafe-desc": "Serving coffee, fruit tea, desserts, and sandwiches.",
-                "extra-vip": "VIP ROOM", "extra-vip-desc": "Luxury private rooms with set menus. Ideal for VIP guests and family gatherings (Up to 20 pax).",
+                "extra-cafe": "CASIJA Cafe", "extra-cafe-desc": "Serving coffee, fruit tea, and desserts.",
+                "extra-vip": "VIP ROOM", "extra-vip-desc": "Luxury private rooms with set menus for VIP guests (Up to 20 pax).",
+                "fac-gym": "Fitness Center", "fac-gym-desc": "Equipped with treadmills, exercise bikes, and multi-gym equipment.",
+                "fac-bath": "Japanese Bath", "fac-bath-desc": "Equipped with sauna, offering a Japanese hot spring atmosphere (Free for staying guests).",
+                "fac-shop": "Convenience Store", "fac-shop-desc": "A wide variety of beverages, snacks, Japanese imports, local specialties, and daily necessities.",
+                "fac-massage": "Massage Room · Liangzi", "fac-massage-desc": "Famous Shanghai chain 'Liangzi'. Offers foot/body massage and oil treatment. From 70 RMB/hour. Hair salon also available.",
                 "btn-book-now": "Book Now", "footer-slogan": "Providing authentic Japanese hospitality.",
                 "footer-quick-nav": "Navigation", "footer-contact-us": "Contact", "footer-addr": "1388 Yongxing Rd, Pinghu"
             },
@@ -611,19 +636,23 @@
                 "about-p1": "上海から90kmの平湖市に位置。平湖市唯一の和風ホテル。",
                 "about-p2": "370室の客室とアパートメントを完備。日本人シェフによる本格的な日本料理が自慢です。",
                 "rooms-title": "客室予約", "rooms-subtitle": "ACCOMMODATION",
-                "room1-name": "デラックスキング", "room1-desc": "広々と明るい居心地の良い空間に、和の禅の心を取り入れ、快適な休息環境を提供します。",
-                "room1-price": "CNY 680〜", "room2-name": "アパートメント", "room2-desc": "長期滞在のために設計された温かみのある空間で、充実した設備が揃っています。",
+                "room1-name": "デラックスキング", "room1-desc": "广々と明るい居心地の良い空間に、和の禅の心を取り入れました。",
+                "room1-price": "CNY 680〜", "room2-name": "アパートメント", "room2-desc": "长期滞在のために設計された温かみのある空間で、充実した設備が揃っています。",
                 "room2-price": "CNY 850〜", "btn-reserve": "予約する",
                 "price-table-label": "料金表の詳細",
                 "dining-title": "お食事", "dining-subtitle": "DINING & BANQUET",
                 "dining-name": "日本料理　若杉", 
-                "dining-desc": "日本人による管理・指導の下、厳選食材を使用した日本料理。300種類以上の居酒屋メニューをご用意。",
+                "dining-desc": "日本人による管理・指導の下、厳選食材を使用した日本料理。300種類以上の居酒屋メニュー。",
                 "cap-title": "最大収容人数", "cap-banquet": "宴会", "cap-party": "パーティ", "cap-whole": "貸切",
                 "extra-bbq": "焼肉店", "extra-bbq-desc": "上海で人気の焼肉の味を平湖でもお楽しみいただけます。",
-                "extra-cafe": "カフェ", "extra-cafe-desc": "コーヒー、フルーツティー、デザート、サンドイッチをご提供。",
-                "extra-vip": "VIP ROOM", "extra-vip-desc": "豪華個室と特選料理のセット。大切なゲストの接待や家族の集まりに(最大20名)。",
+                "extra-cafe": "カフェ", "extra-cafe-desc": "コーヒー、フルーツティー、デザートをご提供。",
+                "extra-vip": "VIP ROOM", "extra-vip-desc": "豪華個室と特選料理のセット。大切なゲストの接待に(最大20名)。",
+                "fac-gym": "フィットネス", "fac-gym-desc": "ランニングマシン、フィットネスバイク、マルチジムなどを完備。",
+                "fac-bath": "大浴場", "fac-bath-desc": "サウナ完備、日本式温泉の雰囲気を楽しめます（宿泊客無料）。",
+                "fac-shop": "コンビニ", "fac-shop-desc": "飲料、スナック、日本輸入品、中国特産品、日用品など豊富に揃っております。",
+                "fac-massage": "マッサージ室 · 良子", "fac-massage-desc": "上海の名店「良子」提携。足裏、全身マッサージ等。1時間70元より。理容室も併設。",
                 "btn-book-now": "今すぐ予約", "footer-slogan": "本格的な和のおもてなしを提供します。",
-                "footer-quick-nav": "ナビ", "footer-contact-us": "お問い合わせ", "footer-addr": "平湖市経済開発区永興路1388号"
+                "footer-quick-nav": "ナビ", "footer-contact-us": "お問い合わせ", "footer-addr": "平湖市経済开发区永兴路1388号"
             }
         };
 
