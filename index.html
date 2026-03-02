@@ -9,10 +9,11 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            --primary-green: #2d4033;
-            --accent-gold: #c5a059;
+            /* 主题色更新 */
+            --primary-green: #00552e;
+            --accent-gold: #fddea5;
             --overlay: rgba(0, 0, 0, 0.2);
-            --footer-bg: #1a261e;
+            --footer-bg: #00552e;
             --transition-curve: cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
@@ -44,16 +45,17 @@
             top: 0; width: 100%; height: 90px;
             display: flex; justify-content: space-between; align-items: center;
             padding: 0 4%; z-index: 1000;
-            background: rgba(0, 0, 0, 0.3);
+            /* 导航栏背景色改为深绿色透明 */
+            background: rgba(0, 85, 46, 0.85);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(253, 222, 165, 0.2);
             color: white;
             transition: background 0.3s ease;
         }
 
         .logo-box { text-align: left; flex-shrink: 0; }
-        .logo-cn { font-size: 1.4rem; letter-spacing: 2px; font-weight: 500; }
+        .logo-cn { font-size: 1.4rem; letter-spacing: 2px; font-weight: 500; color: var(--accent-gold); }
         .logo-en { font-size: 0.65rem; letter-spacing: 1px; opacity: 0.8; }
 
         .nav-links { display: flex; list-style: none; gap: 20px; margin: 0 20px; }
@@ -66,6 +68,7 @@
             content: ''; position: absolute; width: 0; height: 1px; 
             bottom: 0; left: 0; background: var(--accent-gold); transition: 0.3s;
         }
+        .nav-links a:hover { color: var(--accent-gold); }
         .nav-links a:hover:after { width: 100%; }
 
         .lang-switch { 
@@ -74,35 +77,23 @@
         .lang-btn {
             color: rgba(255,255,255,0.6); cursor: pointer; transition: 0.3s; text-decoration: none;
         }
-        .lang-btn.active { color: white; font-weight: 500; }
+        .lang-btn.active { color: var(--accent-gold); font-weight: 500; }
         .lang-btn:hover { color: var(--accent-gold); }
 
         .hero {
             position: relative; height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
-                        url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1600') center/cover no-repeat;
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), 
+                        url('https://i.postimg.cc/Gpd4BNWr/fan-dian-jie-shao.jpg') center/cover no-repeat;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             color: white; text-align: center;
         }
 
-        .hero-content h1 {
-            font-size: 4.5rem; font-weight: 300; margin-bottom: 20px;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            animation: fadeInDown 1.5s var(--transition-curve);
-        }
-        
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero-content p {
-            font-size: 1.2rem; letter-spacing: 8px; text-transform: uppercase;
-            animation: fadeIn 2s var(--transition-curve) 0.5s both;
-        }
-
         .section-title { font-size: 2.2rem; margin-bottom: 10px; color: var(--primary-green); font-weight: 500; }
-        .section-subtitle { font-size: 0.9rem; color: var(--accent-gold); letter-spacing: 3px; margin-bottom: 40px; display: block; }
+        .section-subtitle { font-size: 0.9rem; color: var(--primary-green); opacity: 0.8; letter-spacing: 3px; margin-bottom: 40px; display: block; }
+        /* 使用淡金色作为副标题强调色 */
+        .section-subtitle::after {
+            content: ''; display: block; width: 40px; height: 2px; background: var(--accent-gold); margin: 10px auto;
+        }
 
         .info-section { padding: 120px 0 60px; background: white; text-align: center; }
         .info-text-content { padding: 0 10%; max-width: 1200px; margin: 0 auto 60px; }
@@ -157,7 +148,7 @@
             position: absolute;
             bottom: 0; left: 0; width: 100%;
             padding: 60px 40px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            background: linear-gradient(transparent, rgba(0, 85, 46, 0.8));
             color: white;
             text-align: left;
             display: flex;
@@ -165,16 +156,16 @@
             justify-content: flex-end;
             transition: 0.4s;
         }
-        .room-name-full { font-size: 2rem; font-weight: 500; margin-bottom: 10px; }
+        .room-name-full { font-size: 2rem; font-weight: 500; margin-bottom: 10px; color: var(--accent-gold); }
         .room-desc-full { font-size: 1rem; opacity: 0.9; margin-bottom: 25px; max-width: 400px; }
         .room-footer-full { display: flex; align-items: center; gap: 30px; }
         .price-tag-full { font-size: 1.4rem; color: var(--accent-gold); font-weight: 500; }
         .btn-reserve-full { 
-            color: white; text-decoration: none; border: 1px solid white; 
+            color: white; text-decoration: none; border: 1px solid var(--accent-gold); 
             padding: 10px 30px; font-size: 0.9rem; letter-spacing: 2px;
             transition: 0.3s;
         }
-        .btn-reserve-full:hover { background: white; color: black; }
+        .btn-reserve-full:hover { background: var(--accent-gold); color: var(--primary-green); font-weight: bold; }
 
         .price-table-trigger {
             margin: 40px auto;
@@ -183,8 +174,8 @@
             gap: 10px;
             padding: 12px 35px;
             background: transparent;
-            border: 1px solid var(--accent-gold);
-            color: var(--accent-gold);
+            border: 2px solid var(--primary-green);
+            color: var(--primary-green);
             cursor: pointer;
             font-family: 'Noto Serif SC', serif;
             font-size: 1rem;
@@ -194,16 +185,16 @@
             z-index: 10;
         }
         .price-table-trigger:hover {
-            background: var(--accent-gold);
-            color: white;
-            box-shadow: 0 5px 20px rgba(197, 160, 89, 0.3);
+            background: var(--primary-green);
+            color: var(--accent-gold);
+            box-shadow: 0 5px 20px rgba(0, 85, 46, 0.3);
         }
 
         /* 价格表弹窗 */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(0, 85, 46, 0.98);
             z-index: 2000;
             display: none;
             flex-direction: column;
@@ -215,12 +206,12 @@
         .modal-close {
             position: fixed;
             top: 30px; right: 40px;
-            color: white;
+            color: var(--accent-gold);
             cursor: pointer;
             z-index: 2100;
             transition: 0.3s;
         }
-        .modal-close:hover { color: var(--accent-gold); transform: rotate(90deg); }
+        .modal-close:hover { transform: rotate(90deg); opacity: 0.8; }
         .price-images-container {
             max-width: 1000px;
             width: 100%;
@@ -231,7 +222,7 @@
         .price-images-container img {
             width: 100%;
             height: auto;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 2px solid var(--accent-gold);
             display: block;
         }
 
@@ -239,16 +230,16 @@
         .dining-main-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: flex-start; margin-bottom: 60px; }
         
         .dining-images-container { display: flex; flex-direction: column; gap: 20px; }
-        .dining-image-main img { width: 100%; height: auto; object-fit: cover; box-shadow: 20px 20px 0px #f9f8f4; border-radius: 4px; }
+        .dining-image-main img { width: 100%; height: auto; object-fit: cover; box-shadow: 20px 20px 0px var(--accent-gold); border-radius: 4px; }
         .dining-images-sub { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .dining-images-sub img { width: 100%; height: auto; object-fit: cover; box-shadow: 10px 10px 0px #f9f8f4; border-radius: 4px; }
+        .dining-images-sub img { width: 100%; height: auto; object-fit: cover; box-shadow: 10px 10px 0px var(--accent-gold); border-radius: 4px; }
 
         .dining-content { text-align: left; }
         .dining-content h3 { font-size: 1.8rem; color: var(--primary-green); margin-bottom: 20px; font-weight: 500; }
         .dining-desc { font-size: 1rem; color: #444; margin-bottom: 30px; line-height: 1.8; }
         
-        .capacity-box { background: #fdfbf7; padding: 25px; border-left: 3px solid var(--accent-gold); margin-bottom: 30px; }
-        .capacity-title { font-size: 0.95rem; color: var(--accent-gold); letter-spacing: 2px; margin-bottom: 15px; display: block; font-weight: 500; }
+        .capacity-box { background: #fdfbf7; padding: 25px; border-left: 4px solid var(--primary-green); margin-bottom: 30px; }
+        .capacity-title { font-size: 0.95rem; color: var(--primary-green); letter-spacing: 2px; margin-bottom: 15px; display: block; font-weight: 500; }
         .capacity-list { list-style: none; }
         .capacity-list li { display: flex; justify-content: space-between; margin-bottom: 8px; border-bottom: 1px dashed #e0e0e0; padding-bottom: 5px; font-size: 0.95rem; }
         .capacity-label { color: var(--primary-green); }
@@ -256,11 +247,11 @@
 
         .dining-extra-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
         .extra-card { background: #fdfbf7; padding: 30px; border-radius: 4px; border: 1px solid #eee; transition: 0.3s; display: flex; flex-direction: column; }
-        .extra-card:hover { border-color: var(--accent-gold); background: #fff; }
+        .extra-card:hover { border-color: var(--primary-green); background: #fff; }
         
         .extra-card-img { width: 100%; height: 200px; object-fit: cover; margin-bottom: 20px; border-radius: 2px; background: #eee; }
         
-        .extra-title { font-size: 1.2rem; color: var(--primary-green); margin-bottom: 15px; font-weight: 500; border-bottom: 1px solid #c5a059; padding-bottom: 10px; display: inline-block; }
+        .extra-title { font-size: 1.2rem; color: var(--primary-green); margin-bottom: 15px; font-weight: 500; border-bottom: 2px solid var(--accent-gold); padding-bottom: 10px; display: inline-block; }
         .extra-desc { font-size: 0.9rem; color: #666; line-height: 1.7; }
 
         /* 会议接待板块 */
@@ -310,22 +301,22 @@
         /* 饭店设施板块 */
         .facility-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 50px; padding: 0 10%; }
         .facility-item { display: flex; flex-direction: column; text-align: left; }
-        .facility-img-box { height: 350px; overflow: hidden; position: relative; background: #eee; box-shadow: 0 10px 20px rgba(0,0,0,0.04); margin-bottom: 20px; }
+        .facility-img-box { height: 350px; overflow: hidden; position: relative; background: #eee; box-shadow: 0 10px 20px rgba(0,0,0,0.04); margin-bottom: 20px; border-bottom: 4px solid var(--accent-gold); }
         .facility-img-box img { width: 100%; height: 100%; object-fit: cover; transition: 1s var(--transition-curve); }
         .facility-item:hover img { transform: scale(1.08); }
         .facility-item h4 { font-size: 1.2rem; color: var(--primary-green); margin-bottom: 10px; font-weight: 500; }
         .facility-item p { font-size: 0.9rem; color: #666; line-height: 1.6; }
 
-        .map-container { width: 100%; margin-top: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); background: #fff; padding: 10px; border: 1px solid #eee; }
+        .map-container { width: 100%; margin-top: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); background: #fff; padding: 10px; border: 2px solid var(--primary-green); }
         .map-container img { width: 100%; height: auto; display: block; }
 
-        footer { background-color: var(--footer-bg); color: #ffffff; padding: 80px 10% 40px; font-size: 0.9rem; }
+        footer { background-color: var(--footer-bg); color: #ffffff; padding: 80px 10% 40px; font-size: 0.9rem; border-top: 5px solid var(--accent-gold); }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1.5fr; gap: 60px; margin-bottom: 60px; }
         .footer-logo { margin-bottom: 25px; }
-        .footer-logo .logo-cn { font-size: 1.6rem; color: #fff; }
+        .footer-logo .logo-cn { font-size: 1.6rem; color: var(--accent-gold); }
         .footer-logo .logo-en { font-size: 0.75rem; color: rgba(255,255,255,0.6); }
         .footer-slogan { color: rgba(255,255,255,0.5); line-height: 1.8; margin-top: 15px; }
-        .footer-title { color: var(--accent-gold); font-size: 1rem; font-weight: 500; margin-bottom: 25px; letter-spacing: 2px; display: block; }
+        .footer-title { color: var(--accent-gold); font-size: 1rem; font-weight: 500; margin-bottom: 25px; letter-spacing: 2px; display: block; text-transform: uppercase; }
         .footer-links { list-style: none; }
         .footer-links li { margin-bottom: 12px; }
         .footer-links a { color: rgba(255,255,255,0.7); text-decoration: none; transition: 0.3s; }
@@ -333,9 +324,10 @@
         .footer-contact { color: rgba(255,255,255,0.7); }
         .contact-item { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; }
         .contact-item i { color: var(--accent-gold); margin-top: 5px; }
-        .footer-bottom { padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; color: rgba(255,255,255,0.3); font-size: 0.75rem; }
+        .footer-bottom { padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; color: rgba(255,255,255,0.3); font-size: 0.75rem; }
 
-        .book-now { position: fixed; bottom: 40px; right: 40px; background: var(--primary-green); color: white; padding: 18px 45px; border-radius: 2px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); cursor: pointer; z-index: 1000; transition: 0.4s; letter-spacing: 2px; font-weight: 500; }
+        .book-now { position: fixed; bottom: 40px; right: 40px; background: var(--primary-green); color: var(--accent-gold); padding: 18px 45px; border-radius: 2px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); cursor: pointer; z-index: 1000; transition: 0.4s; letter-spacing: 2px; font-weight: 500; border: 1px solid var(--accent-gold); }
+        .book-now:hover { transform: translateY(-5px); background: #004424; box-shadow: 0 15px 40px rgba(0,0,0,0.4); }
 
         @media (max-width: 1024px) {
             nav { height: auto; flex-wrap: wrap; padding: 15px 4%; }
@@ -352,7 +344,7 @@
 </head>
 <body>
 
-    <nav>
+    <nav id="mainNav">
         <div class="logo-box">
             <div class="logo-cn">绿阳大饭店</div>
             <div class="logo-en">GREEN SUN HOTEL</div>
@@ -367,18 +359,15 @@
         </ul>
         <div class="lang-switch">
             <span class="lang-btn active" onclick="setLang('zh')">中文</span>
-            <span style="opacity: 0.3">/</span>
+            <span style="opacity: 0.3; color: white;">/</span>
             <span class="lang-btn" onclick="setLang('en')">EN</span>
-            <span style="opacity: 0.3">/</span>
+            <span style="opacity: 0.3; color: white;">/</span>
             <span class="lang-btn" onclick="setLang('jp')">JP</span>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="hero-content">
-            <h1 data-i18n="hero-title">静谧 · 优雅</h1>
-            <p data-i18n="hero-subtitle">为您开启一段非凡的居停旅程</p>
-        </div>
+        <!-- 背景图已按要求替换，文案已删除 -->
     </section>
 
     <!-- 饭店介绍版块 -->
@@ -442,6 +431,7 @@
         </div>
     </section>
 
+    <!-- 价格表弹窗 -->
     <div class="modal-overlay" id="priceModal" onclick="togglePriceModal(false)">
         <div class="modal-close" onclick="togglePriceModal(false)">
             <i data-lucide="x" size="32"></i>
@@ -605,7 +595,6 @@
             zh: {
                 "nav-about": "饭店介绍", "nav-rooms": "客房预订", "nav-dining": "餐饮宴会",
                 "nav-meeting": "会议接待", "nav-facility": "饭店设施", "nav-location": "交通位置",
-                "hero-title": "静谧 · 优雅", "hero-subtitle": "为您开启一段非凡的居停旅程",
                 "about-title": "饭店介绍", "about-subtitle": "ABOUT GREEN SUN HOTEL",
                 "about-p1": "绿阳大饭店位于自上海约90公里的浙江省平湖市经济开发区，饭店占地面积2万平方米，建筑面积约2万9千平方米。是目前平湖市唯一的一家日式的国际性旅游涉外饭店，国家银叶级绿色饭店。",
                 "about-p2": "饭店拥有370间不同套型的各式豪华客房及公寓套房。其中本馆170余间的客房，别管100余间的酒店式公寓套房，以及刚建造完工的103间的新客房加酒店式公寓套房。各房间内除了能免费上网之外，卫星电视和影视点播系统等设施也非常完备。日本料理是本饭店的一大特设。由日本人厨师亲自制作，在平湖有着最高的评价。格调高雅的西餐厅，在私人聚会和商务接待中尽情地演绎着法国式食文化的色彩。还有日本式的大浴场，健身房，按摩室，理发店等娱乐设施可让客人在繁忙的工作之余放松心情。多功能会议厅可满足客人各式各样的商务需求。",
@@ -633,7 +622,6 @@
             en: {
                 "nav-about": "Introduction", "nav-rooms": "Rooms", "nav-dining": "Dining",
                 "nav-meeting": "Meetings", "nav-facility": "Facilities", "nav-location": "Location",
-                "hero-title": "Serenity · Elegance", "hero-subtitle": "An extraordinary journey with us",
                 "about-title": "Introduction", "about-subtitle": "ABOUT GREEN SUN HOTEL",
                 "about-p1": "Located in Pinghu EDZ, 90km from Shanghai. The unique Japanese-style international hotel in Pinghu.",
                 "about-p2": "Features 370 rooms including apartments. Japanese cuisine is our specialty, featuring authentic menus prepared by Japanese chefs.",
@@ -661,18 +649,17 @@
             jp: {
                 "nav-about": "ホテル紹介", "nav-rooms": "客室予約", "nav-dining": "お食事",
                 "nav-meeting": "会議・宴会", "nav-facility": "施設案内", "nav-location": "アクセス",
-                "hero-title": "静寂 ・ 優雅", "hero-subtitle": "至福のひとときを",
                 "about-title": "ホテル紹介", "about-subtitle": "ABOUT GREEN SUN HOTEL",
                 "about-p1": "上海から90kmの平湖市に位置。平湖市唯一の和風ホテル。",
-                "about-p2": "370室の客室とアパートメントを完備。日本人シェフによる本格的な日本料理が自慢です。",
+                "about-p2": "370室の客室和アパートメントを完備。日本人シェフによる本格的な日本料理が自慢です。",
                 "rooms-title": "客室予約", "rooms-subtitle": "ACCOMMODATION",
-                "room1-name": "デラックスキング", "room1-desc": "广々と明るい居心地の良い空間に、和の禅の心を取り入れました。",
-                "room1-price": "CNY 680〜", "room2-name": "アパートメント", "room2-desc": "长期滞在のために設計された温かみのある空間で、充実した設備が揃っています。",
+                "room1-name": "デラックスキング", "room1-desc": "広々と明るい居心地の良い空間に、和の禅の心を取り入れました。",
+                "room1-price": "CNY 680〜", "room2-name": "アパートメント", "room2-desc": "長期滞在のために設計された温かみのある空間で、充実した設備が揃っています。",
                 "room2-price": "CNY 850〜", "btn-reserve": "予約する",
                 "price-table-label": "料金表の詳細",
                 "dining-title": "お食事", "dining-subtitle": "DINING & BANQUET",
                 "dining-name": "日本料理　若杉", 
-                "dining-desc": "日本人による管理・指導の下、厳選食材を使用した日本料理。300種類以上の居酒屋メニュー。",
+                "dining-desc": "日本人による管理・指導の下、厳选食材を使用した日本料理。300種類以上の居酒屋メニュー。",
                 "cap-title": "最大収容人数", "cap-banquet": "宴会", "cap-party": "パーティ", "cap-whole": "貸切",
                 "extra-bbq": "焼肉店", "extra-bbq-desc": "上海で人気の焼肉の味を平湖でもお楽しみいただけます。",
                 "extra-cafe": "カフェ", "extra-cafe-desc": "コーヒー、フルーツティー、デザートをご提供。",
@@ -681,17 +668,25 @@
                 "fac-gym": "フィットネス", "fac-gym-desc": "ランニングマシン、フィットネスバイク、マルチジムなどを完備。",
                 "fac-bath": "大浴場", "fac-bath-desc": "サウナ完備、日本式温泉の雰囲気を楽しめます（宿泊客無料）。",
                 "fac-shop": "コンビニ", "fac-shop-desc": "飲料、スナック、日本輸入品、中国特産品、日用品など豊富に揃っております。",
-                "fac-massage": "マッサージ室 · 良子", "fac-massage-desc": "上海の名店「良子」提携。足裏、全身マッサージ等。1時間70元より。理容室も併設。",
+                "fac-massage": "マッサージ室 · 良子", "fac-massage-desc": "上海の名店「良子」提携。足裏、全身マッサージ等。1時間70元より。理容室も併设。",
                 "btn-book-now": "今すぐ予約", "footer-slogan": "本格的な和のおもてなしを提供します。",
-                "footer-quick-nav": "ナビ", "footer-contact-us": "お問い合わせ", "footer-addr": "平湖市経済开发区永兴路1388号",
+                "footer-quick-nav": "ナビ", "footer-contact-us": "お問い合わせ", "footer-addr": "平湖市経済開発区永興路1388号",
                 "contact-fax": "ファックス"
             }
         };
 
         function setLang(lang) {
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            const activeBtn = Array.from(document.querySelectorAll('.lang-btn')).find(b => b.innerText.toLowerCase().includes(lang));
-            if(activeBtn) activeBtn.classList.add('active');
+            // 匹配按钮逻辑
+            const langBtns = document.querySelectorAll('.lang-btn');
+            langBtns.forEach(btn => {
+                const btnText = btn.innerText.toLowerCase();
+                if ((lang === 'zh' && btnText === '中文') || 
+                    (lang === 'en' && btnText === 'en') || 
+                    (lang === 'jp' && btnText === 'jp')) {
+                    btn.classList.add('active');
+                }
+            });
 
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
@@ -723,6 +718,18 @@
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        
+        // 滚动时改变导航栏背景深浅
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(0, 85, 46, 0.98)';
+                nav.style.height = '70px';
+            } else {
+                nav.style.background = 'rgba(0, 85, 46, 0.85)';
+                nav.style.height = '90px';
+            }
+        });
     </script>
 </body>
 </html>
