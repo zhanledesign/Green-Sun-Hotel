@@ -9,7 +9,6 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            /* 主题色更新 */
             --primary-green: #00552e;
             --accent-gold: #fddea5;
             --overlay: rgba(0, 0, 0, 0.2);
@@ -25,6 +24,14 @@
             color: #1a1a1a;
             overflow-x: hidden;
             line-height: 1.8;
+        }
+
+        /* 图片渲染优化 */
+        img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: auto;
+            backface-visibility: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* 渐显动画类 */
@@ -50,7 +57,7 @@
             -webkit-backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(253, 222, 165, 0.2);
             color: white;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, height 0.3s ease;
         }
 
         .logo-box { text-align: left; flex-shrink: 0; }
@@ -79,12 +86,33 @@
         .lang-btn.active { color: var(--accent-gold); font-weight: 500; }
         .lang-btn:hover { color: var(--accent-gold); }
 
+        /* 首页背景图替换 */
         .hero {
             position: relative; height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), 
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
                         url('https://i.postimg.cc/Gpd4BNWr/fan-dian-jie-shao.jpg') center/cover no-repeat;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             color: white; text-align: center;
+        }
+
+        .hero-content {
+            z-index: 10;
+            padding: 20px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            letter-spacing: 8px;
+            margin-bottom: 15px;
+            font-weight: 500;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            letter-spacing: 4px;
+            opacity: 0.9;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
         }
 
         .section-title { font-size: 2.2rem; margin-bottom: 10px; color: var(--primary-green); font-weight: 500; }
@@ -100,26 +128,26 @@
             gap: 12px;
             background: var(--primary-green);
             color: var(--accent-gold);
-            padding: 8px 24px;
+            padding: 10px 28px;
             border-radius: 50px;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             border: 1px solid var(--accent-gold);
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             transition: 0.3s var(--transition-curve);
             box-shadow: 0 4px 15px rgba(0, 85, 46, 0.2);
             animation: pulse-border 3s infinite;
         }
         .capsule-tag:hover {
-            transform: scale(1.05);
+            transform: scale(1.05) translateY(-2px);
             background: #004424;
-            box-shadow: 0 6px 20px rgba(0, 85, 46, 0.4);
+            box-shadow: 0 8px 25px rgba(0, 85, 46, 0.4);
         }
-        .capsule-tag i { color: #2577e3; background: white; border-radius: 50%; padding: 2px; } /* 携程色微型点缀 */
+        .capsule-tag i { color: #2577e3; background: white; border-radius: 50%; padding: 2px; }
 
         @keyframes pulse-border {
             0% { box-shadow: 0 0 0 0 rgba(253, 222, 165, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(253, 222, 165, 0); }
+            70% { box-shadow: 0 0 0 12px rgba(253, 222, 165, 0); }
             100% { box-shadow: 0 0 0 0 rgba(253, 222, 165, 0); }
         }
 
@@ -137,7 +165,7 @@
             overflow: hidden; 
             background: #f4f4f4; 
             position: relative; 
-            aspect-ratio: 16 / 9; 
+            aspect-ratio: 16 / 10; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
         }
         .gallery-item img { 
@@ -146,8 +174,9 @@
             object-fit: cover; 
             transition: transform 1.2s var(--transition-curve); 
             display: block; 
+            transform: translateZ(0);
         }
-        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-item:hover img { transform: scale(1.06); }
 
         .rooms-section { padding: 120px 0 0; background: #f9f8f4; text-align: center; overflow: hidden; }
         .rooms-full-grid { 
@@ -169,14 +198,15 @@
             object-fit: cover; 
             opacity: 0.85;
             transition: 1.5s var(--transition-curve);
+            transform: translateZ(0);
         }
-        .room-card-full:hover img { transform: scale(1.1); opacity: 1; }
+        .room-card-full:hover img { transform: scale(1.08); opacity: 1; }
         
         .room-overlay {
             position: absolute;
             bottom: 0; left: 0; width: 100%;
             padding: 60px 40px;
-            background: linear-gradient(transparent, rgba(0, 85, 46, 0.8));
+            background: linear-gradient(transparent, rgba(0, 85, 46, 0.85));
             color: white;
             text-align: left;
             display: flex;
@@ -185,7 +215,7 @@
             transition: 0.4s;
         }
         .room-name-full { font-size: 2rem; font-weight: 500; margin-bottom: 10px; color: var(--accent-gold); }
-        .room-desc-full { font-size: 1rem; opacity: 0.9; margin-bottom: 25px; max-width: 400px; }
+        .room-desc-full { font-size: 1rem; opacity: 0.9; margin-bottom: 25px; max-width: 450px; line-height: 1.6; }
         .room-footer-full { display: flex; align-items: center; gap: 30px; }
         .price-tag-full { font-size: 1.4rem; color: var(--accent-gold); font-weight: 500; }
         .btn-reserve-full { 
@@ -200,7 +230,7 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 12px 35px;
+            padding: 14px 40px;
             background: transparent;
             border: 2px solid var(--primary-green);
             color: var(--primary-green);
@@ -215,9 +245,10 @@
         .price-table-trigger:hover {
             background: var(--primary-green);
             color: var(--accent-gold);
-            box-shadow: 0 5px 20px rgba(0, 85, 46, 0.3);
+            box-shadow: 0 5px 25px rgba(0, 85, 46, 0.3);
         }
 
+        /* 弹窗样式 */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -249,14 +280,16 @@
         .price-images-container img {
             width: 100%;
             height: auto;
-            border: 2px solid var(--accent-gold);
+            border: 1px solid rgba(253, 222, 165, 0.3);
             display: block;
         }
 
+        /* 餐饮宴会 */
         .dining-section { padding: 120px 10%; background: white; }
         .dining-main-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: flex-start; margin-bottom: 60px; }
         
         .dining-images-container { display: flex; flex-direction: column; gap: 20px; }
+        .dining-image-main reveal { width: 100%; }
         .dining-image-main img { width: 100%; height: auto; object-fit: cover; box-shadow: 20px 20px 0px var(--accent-gold); border-radius: 4px; }
         .dining-images-sub { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .dining-images-sub img { width: 100%; height: auto; object-fit: cover; box-shadow: 10px 10px 0px var(--accent-gold); border-radius: 4px; }
@@ -281,6 +314,7 @@
         .extra-title { font-size: 1.2rem; color: var(--primary-green); margin-bottom: 15px; font-weight: 500; border-bottom: 2px solid var(--accent-gold); padding-bottom: 10px; display: inline-block; }
         .extra-desc { font-size: 0.9rem; color: #666; line-height: 1.7; }
 
+        /* 会议接待 */
         .meeting-section { padding: 120px 0 60px; background: #fdfbf7; text-align: center; }
         .meeting-full-grid { 
             display: grid; 
@@ -303,6 +337,7 @@
             opacity: 0.9;
             transition: 1.5s var(--transition-curve); 
             display: block;
+            transform: translateZ(0);
         }
         .meeting-item:hover img { transform: scale(1.05); opacity: 1; }
         
@@ -324,16 +359,18 @@
             margin: 0 auto;
         }
 
+        /* 饭店设施 */
         .facility-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 50px; padding: 0 10%; }
         .facility-item { display: flex; flex-direction: column; text-align: left; }
         .facility-img-box { height: 350px; overflow: hidden; position: relative; background: #eee; box-shadow: 0 10px 20px rgba(0,0,0,0.04); margin-bottom: 20px; border-bottom: 4px solid var(--accent-gold); }
-        .facility-img-box img { width: 100%; height: 100%; object-fit: cover; transition: 1s var(--transition-curve); }
+        .facility-img-box img { width: 100%; height: 100%; object-fit: cover; transition: 1s var(--transition-curve); transform: translateZ(0); }
         .facility-item:hover img { transform: scale(1.08); }
         .facility-item h4 { font-size: 1.2rem; color: var(--primary-green); margin-bottom: 10px; font-weight: 500; }
         .facility-item p { font-size: 0.9rem; color: #666; line-height: 1.6; }
 
+        /* 地图 */
         .map-container { width: 100%; margin-top: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); background: #fff; padding: 10px; border: 2px solid var(--primary-green); }
-        .map-container img { width: 100%; height: auto; display: block; }
+        .map-container img { width: 100%; height: auto; display: block; image-rendering: -webkit-optimize-contrast; }
 
         footer { background-color: var(--footer-bg); color: #ffffff; padding: 80px 10% 40px; font-size: 0.9rem; border-top: 5px solid var(--accent-gold); }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1.5fr; gap: 60px; margin-bottom: 60px; }
@@ -357,6 +394,7 @@
         @media (max-width: 1024px) {
             nav { height: auto; flex-wrap: wrap; padding: 15px 4%; }
             .nav-links { order: 3; width: 100%; justify-content: center; margin: 15px 0 0; gap: 12px; }
+            .hero-title { font-size: 2.2rem; }
             .dining-main-layout { grid-template-columns: 1fr; }
             .info-gallery-grid { grid-template-columns: 1fr; padding: 0 10%; }
             .rooms-full-grid, .meeting-full-grid { grid-template-columns: 1fr; }
@@ -391,9 +429,15 @@
         </div>
     </nav>
 
-    <section class="hero"></section>
+    <!-- 首页部分，背景图已替换 -->
+    <section class="hero">
+        <div class="hero-content reveal">
+            <h1 class="hero-title">绿阳大饭店</h1>
+            <p class="hero-subtitle">GREEN SUN HOTEL</p>
+        </div>
+    </section>
 
-    <!-- 饭店介绍版块 -->
+    <!-- 饭店介绍 -->
     <section class="info-section" id="about">
         <div class="info-text-content">
             <h2 class="section-title reveal" data-i18n="about-title">饭店介绍</h2>
@@ -403,7 +447,7 @@
                     绿阳大饭店位于自上海约90公里的浙江省平湖市经济开发区，饭店占地面积2万平方米，建筑面积约2万9千平方米。是目前平湖市唯一的一家日式的国际性旅游涉外饭店，国家银叶级绿色饭店。
                 </p>
                 <p data-i18n="about-p2">
-                    饭店拥有370间不同套型的各式豪华客房及公寓套房。其中本馆170余间的客房，别管100余间的酒店式公寓套房，以及刚建造完工的103间的新客房加酒店式公寓套房。各房间内除了能免费上网之外，卫星电视和影视点播系统等设施也非常完备。日本料理是本饭店的一大特设。由日本人厨师亲自制作，在平湖有着最高的评价。格调高雅的西餐厅，在私人聚会和商务接待中尽情地演绎着法国式食文化的色彩。还有日本式的大浴场，健身房，按摩室，理发店等娱乐设施可让客人在繁忙的工作之余放松心情。多功能会议厅可满足客人各式各样的商务需求。
+                    饭店拥有370间不同套型的各式豪华客房及公寓套房。其中本馆170余间的客房，别馆100余间的酒店式公寓套房，以及刚建造完工的103间的新客房加酒店式公寓套房。各房间内除了能免费上网之外，卫星电视和影视点播系统等设施也非常完备。日本料理是本饭店的一大特设。由日本人厨师亲自制作，在平湖有着最高的评价。格调高雅的西餐厅，在私人聚会和商务接待中尽情地演绎着法国式食文化的色彩。还有日本式的大浴场，健身房，按摩室，理发店等娱乐设施可让客人在繁忙的工作之余放松心情。多功能会议厅可满足客人各式各样的商务需求。
                 </p>
             </div>
         </div>
@@ -416,17 +460,16 @@
         </div>
     </section>
 
-    <!-- 客房预订版块 -->
+    <!-- 客房预订 -->
     <section class="rooms-section" id="rooms">
         <h2 class="section-title reveal" data-i18n="rooms-title">客房预订</h2>
         <span class="section-subtitle reveal" data-i18n="rooms-subtitle">ACCOMMODATION & RESERVATION</span>
         
-        <!-- 新增携程预订胶囊标签 -->
+        <!-- 携程预订标签 -->
         <div class="reveal">
             <a href="https://hotels.ctrip.com/hotels/1700272.html?cityid=1206&checkIn=2026-03-04&checkOut=2026-03-12&crn=1&adult=2&children=0" 
                target="_blank" 
-               class="capsule-tag" 
-               data-i18n-href="ctrip-link">
+               class="capsule-tag">
                 <i data-lucide="external-link" size="16"></i>
                 <span data-i18n="ctrip-tag-text">点击跳转至携程预订客房</span>
             </a>
@@ -478,7 +521,7 @@
         </div>
     </div>
 
-    <!-- 餐饮宴会版块 -->
+    <!-- 餐饮宴会 -->
     <section class="dining-section" id="dining">
         <div style="text-align: center; margin-bottom: 60px;">
             <h2 class="section-title reveal" data-i18n="dining-title">餐饮宴会</h2>
@@ -530,7 +573,7 @@
         </div>
     </section>
 
-    <!-- 会议接待版块 -->
+    <!-- 会议接待 -->
     <section class="meeting-section" id="meeting">
         <h2 class="section-title reveal" data-i18n="nav-meeting">会议接待</h2>
         <span class="section-subtitle reveal">MEETINGS & EVENTS</span>
@@ -550,7 +593,7 @@
         </div>
     </section>
 
-    <!-- 饭店设施板块 -->
+    <!-- 饭店设施 -->
     <section class="info-section" id="facility">
         <h2 class="section-title reveal" data-i18n="nav-facility">饭店设施</h2>
         <span class="section-subtitle reveal">HOTEL FACILITIES</span>
@@ -578,7 +621,7 @@
         </div>
     </section>
 
-    <!-- 交通位置版块 -->
+    <!-- 交通位置 -->
     <section class="info-section" id="location">
         <h2 class="section-title reveal" data-i18n="nav-location">交通位置</h2>
         <span class="section-subtitle reveal">LOCATION & ACCESS</span>
@@ -631,7 +674,7 @@
                 "nav-meeting": "会议接待", "nav-facility": "饭店设施", "nav-location": "交通位置",
                 "about-title": "饭店介绍", "about-subtitle": "ABOUT GREEN SUN HOTEL",
                 "about-p1": "绿阳大饭店位于自上海约90公里的浙江省平湖市经济开发区，饭店占地面积2万平方米，建筑面积约2万9千平方米。是目前平湖市唯一的一家日式的国际性旅游涉外饭店，国家银叶级绿色饭店。",
-                "about-p2": "饭店拥有370间不同套型的各式豪华客房及公寓套房。其中本馆170余间的客房，别管100余间的酒店式公寓套房，以及刚建造完工的103间的新客房加酒店式公寓套房。各房间内除了能免费上网之外，卫星电视和影视点播系统等设施也非常完备。日本料理是本饭店的一大特设。由日本人厨师亲自制作，在平湖有着最高的评价。格调高雅的西餐厅，在私人聚会和商务接待中尽情地演绎着法国式食文化的色彩。还有日本式的大浴场，健身房，按摩室，理发店等娱乐设施可让客人在繁忙的工作之余放松心情。多功能会议厅可满足客人各式各样的商务需求。",
+                "about-p2": "饭店拥有370间不同套型的各式豪华客房及公寓套房。其中本馆170余间的客房，别馆100余间的酒店式公寓套房，以及刚建造完工的103间的新客房加酒店式公寓套房。各房间内除了能免费上网之外，卫星电视和影视点播系统等设施也非常完备。日本料理是本饭店的一大特设。由日本人厨师亲自制作，在平湖有着最高的评价。格调高雅的西餐厅，在私人聚会和商务接待中尽情地演绎着法国式食文化的色彩。还有日本式的大浴场，健身房，按摩室，理发店等娱乐设施可让客人在繁忙的工作之余放松心情。多功能会议厅可满足客人各式各样的商务需求。",
                 "rooms-title": "客房预订", "rooms-subtitle": "ACCOMMODATION & RESERVATION",
                 "ctrip-tag-text": "点击跳转至携程预订客房",
                 "room1-name": "豪华大床房", "room1-desc": "宽敞明亮的居停空间，融合日式禅意设计，为您提供私密且舒适的休息环境。",
@@ -691,21 +734,21 @@
                 "rooms-title": "客室予約", "rooms-subtitle": "ACCOMMODATION",
                 "ctrip-tag-text": "Ctripで予約する",
                 "room1-name": "デラックスキング", "room1-desc": "広々と明るい居心地の良い空間に、和の禅の心。",
-                "room1-price": "CNY 680〜", "room2-name": "アパートメント", "room2-desc": "長期滞在のために設計された充実した設備。",
+                "room1-price": "CNY 680〜", "room2-name": "アパートメント", "room2-desc": "长期滞在のために设计された充実した设备。",
                 "room2-price": "CNY 850〜", "btn-reserve": "予約する",
                 "price-table-label": "料金表の詳細",
                 "dining-title": "お食事", "dining-subtitle": "DINING & BANQUET",
                 "dining-name": "日本料理　若杉", 
-                "dining-desc": "日本人による管理・指導の下、厳选食材を使用した日本料理。",
-                "cap-title": "最大収容人数", "cap-banquet": "宴会", "cap-party": "パーティ", "cap-whole": "貸切",
+                "dining-desc": "日本人による管理・指导の下、厳选食材を使用した日本料理。",
+                "cap-title": "最大収容人数", "cap-banquet": "宴会", "cap-party": "パーティ", "cap-whole": "贷切",
                 "extra-bbq": "焼肉店", "extra-bbq-desc": "上海で人気の焼肉の味を平湖でも。",
                 "extra-cafe": "カフェ", "extra-cafe-desc": "コーヒー、フルーツティー、デザート。",
-                "extra-vip": "VIP ROOM", "extra-vip-desc": "接待に最適な個室(最大20名)。",
-                "meeting-room-title": "会議室", "meeting-room-desc": "最大収容人数：50名。",
+                "extra-vip": "VIP ROOM", "extra-vip-desc": "接待に最適な个室(最大20名)。",
+                "meeting-room-title": "会议室", "meeting-room-desc": "最大収容人数：50名。",
                 "fac-gym": "フィットネス", "fac-gym-desc": "ランニングマシン、バイク完備。",
-                "fac-bath": "大浴場", "fac-bath-desc": "サウナ完備、日本式温泉（宿泊客無料）。",
-                "fac-shop": "コンビニ", "fac-shop-desc": "飲料、スナック、日本輸入品など。",
-                "fac-massage": "マッサージ室 · 良子", "fac-massage-desc": "上海の名店「良子」提携。1時間70元より。",
+                "fac-bath": "大浴场", "fac-bath-desc": "サウナ完備、日本式温泉（宿泊客無料）。",
+                "fac-shop": "コンビニ", "fac-shop-desc": "饮料、スナック、日本輸入品など。",
+                "fac-massage": "マッサージ室 · 良子", "fac-massage-desc": "上海の名店「良子」提携。1时间70元より。",
                 "btn-book-now": "今すぐ予約", "footer-slogan": "本格的な和のおもてなし。",
                 "footer-quick-nav": "ナビ", "footer-contact-us": "お問い合わせ", "footer-addr": "平湖市経済開発区永興路1388号",
                 "contact-fax": "ファックス"
